@@ -12,7 +12,8 @@
     "lint": "ng lint",
     "lint:style": "npx stylelint \"**/*.scss\"",
     "prettier": "prettier --write",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "server": "json-server --watch db/db.json"
   },
   "private": true,
   "dependencies": {

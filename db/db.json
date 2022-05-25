@@ -1,0 +1,14 @@
+{
+  "users":[{
+    "name": "Rafal",
+    "email":"rafal@admin.pl",
+    "password":"123456",
+    "role":"admin"
+    },
+    {
+    "name": "Robert",
+    "email":"robert@user.pl",
+    "password":"123456",
+    "role":"user"
+    }]
+}
