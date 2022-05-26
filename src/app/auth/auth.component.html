@@ -1,1 +1,12 @@
-<p>auth works!</p>
+<div class="loginBox">
+  <h2>Zaloguj się</h2>
+  <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput placeholder="podaj adres email" type="email" formControlName="email" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="podaj hasło" type="password" formControlName="password" />
+    </mat-form-field>
+    <button mat-raised-button color="primary">Zaloguj</button>
+  </form>
+</div>

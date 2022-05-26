@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'app',
+        redirectTo: 'auth',
       },
       {
         path: '**',
