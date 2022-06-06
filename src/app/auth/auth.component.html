@@ -1,12 +1,17 @@
-<div class="loginBox">
-  <h2>Zaloguj się</h2>
+<div [ngClass]="closeForm ? 'close' : 'login-box'">
+  <h2>Zaloguj się do serwisu</h2>
   <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
       <input matInput placeholder="podaj adres email" type="email" formControlName="email" />
+      <mat-error *ngIf="authForm.controls['email'].errors?.['required']">Email jest wymagany!</mat-error>
+      <mat-error *ngIf="authForm.controls['email'].errors?.['email']">Zły format email</mat-error>
     </mat-form-field>
     <mat-form-field>
       <input matInput placeholder="podaj hasło" type="password" formControlName="password" />
+      <mat-error *ngIf="authForm.controls['password'].errors?.['required']">Hasło jest wymagane!</mat-error>
+      <mat-error *ngIf="authForm.controls['password'].errors?.['minlength']">Za krótkie hasło</mat-error>
     </mat-form-field>
-    <button mat-raised-button color="primary">Zaloguj</button>
+    <button mat-raised-button>Zaloguj</button>
   </form>
 </div>
+<mat-spinner *ngIf="spinner" class="spinner mat-spinner-color"></mat-spinner>

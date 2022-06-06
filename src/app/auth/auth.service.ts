@@ -19,6 +19,7 @@ export class AuthService {
       }),
       tap(isLogIn => {
         if (isLogIn) {
+          alert('logowanie prawidłowe');
           this.router.navigate(['app']);
         } else {
           alert('nie udało się zalogować');

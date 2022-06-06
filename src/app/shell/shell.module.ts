@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ShellComponent } from './shell.component';
+import { HeaderComponent } from './header/header.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [ShellComponent],
+  declarations: [ShellComponent, HeaderComponent],
   imports: [
     RouterModule.forChild([
-      // tutaj zacznij dodawać routing aplikacji
-      // nie zapomnij o przekierwaniu na domyślny path z  path === ''
+      {
+        path: '',
+        component: ShellComponent,
+      },
     ]),
+    MatIconModule,
   ],
 })
 export class ShellModule {}

@@ -1,51 +1,72 @@
-// .loginBox {
-//   position: absolute;
-//   top: 50%;
-//   left: 50%;
-//   transform: translate(-50%, -50%);
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-around;
-//   align-items: center;
-//   width: 45rem;
-//   height: 35rem;
-//   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
-//   border-radius: 0.8rem;
-//   h2 {
-//     font-size: 3rem;
-//   }
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  max-width: 40rem;
+  margin: auto;
+  background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, rgb(77, 83, 85) 63%, rgb(96, 99, 97) 100%);
+  padding: 5rem;
+  border-radius: 8px;
+  box-shadow: 0px 7px 20px rgba(0, 0, 0, 30%);
 
-//   form {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     align-items: flex-start;
+  h2 {
+    font-size: 3rem;
+    color: #cdfc12;
+  }
 
-//     label {
-//       font-size: 1.6rem;
-//       color: rgb(80, 80, 80);
-//     }
-//     input {
-//       width: 40rem;
-//       padding: 0.5rem 1rem;
-//       font-size: 2rem;
-//       border: 1px solid rgba(0, 0, 0, 0.3);
-//       border-radius: 0.8rem;
-//     }
+  mat-form-field {
+    font-size: 2rem;
+    margin: 0.5rem auto;
+    width: 100%;
 
-//     button {
-//       position: relative;
-//       margin: 1rem auto;
-//       padding: 0.5em 1rem;
-//       font-size: 1.6rem;
-//       background-color: #2f69fe;
-//       border: transparent;
-//       border-radius: 0.8rem;
-//       color: white;
-//       cursor: pointer;
-//     }
-//   }
-// }
-// .example-card {
-//   max-width: 400px;
-// }
+    input {
+      font-size: 2rem;
+      color: white;
+      caret-color: #cdfc12;
+    }
+  }
+
+  button {
+    position: relative;
+    display: block;
+    margin: 1rem auto 0rem;
+    text-align: center;
+    font-size: 1.6rem;
+    padding: 0.5rem 2rem;
+    background-color: #cdfc12;
+  }
+}
+
+.close {
+  display: none;
+}
+
+mat-spinner {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #cdfc12;
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #cdfc12 !important;
+}
+
+::ng-deep.mat-form-field-underline {
+  /*change color of underline*/
+  background-color: #cdfc12 !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #cdfc12 !important;
+}
+
+.mat-spinner-color::ng-deep circle {
+  stroke: #cdfc12 !important;
+}
