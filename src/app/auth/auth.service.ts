@@ -8,6 +8,8 @@ import { User } from './user.interface';
   providedIn: 'root',
 })
 export class AuthService {
+  public isLogedIn = false;
+
   public readonly API_URL = 'http://localhost:3000/users';
 
   constructor(private authApi: HttpClient, private router: Router) {}
@@ -20,6 +22,7 @@ export class AuthService {
       tap(isLogIn => {
         if (isLogIn) {
           alert('logowanie prawidłowe');
+          this.isLogedIn = !this.isLogedIn;
           this.router.navigate(['app']);
         } else {
           alert('nie udało się zalogować');

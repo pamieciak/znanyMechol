@@ -54,6 +54,9 @@
   }
 
   &__login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0.5rem;
     margin-right: 1rem;
     font-size: 2rem;
@@ -68,6 +71,10 @@
     }
 
     a:hover {
+      color: #cdfc12;
+    }
+
+    mat-icon {
       color: #cdfc12;
     }
   }
