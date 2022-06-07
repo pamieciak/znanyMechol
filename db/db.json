@@ -11,11 +11,11 @@
     "password":"123456",
     "role":"user"
     }],
-    "specialists":[{"first_name":"Delaney","last_name":"Baxendale","email":"dbaxendale0@businesswire.com","address":"4 Bobwhite Trail","specialization":"Elektryk"},
-      {"first_name":"Zsazsa","last_name":"Lipprose","email":"zlipprose1@buzzfeed.com","address":"5 Oriole Hill","specialization":"Elektryk"},
-      {"first_name":"Corny","last_name":"Vynehall","email":"cvynehall2@eepurl.com","address":"237 Dexter Street","specialization":"Mechanik"},
-      {"first_name":"Travis","last_name":"Beall","email":"tbeall3@java.com","address":"48 Cottonwood Hill","specialization":"Zawieszenie"},
-      {"first_name":"Derwin","last_name":"Abdy","email":"dabdy4@theglobeandmail.com","address":"9 Springview Trail","specialization":"Mechanik"},
-      {"first_name":"Leah","last_name":"Boorer","email":"lboorer5@loc.gov","address":"87873 Warbler Circle","specialization":"Blacharka"},
-      {"first_name":"Anabel","last_name":"Rosebotham","email":"arosebotham6@npr.org","address":"7205 Transport Center","specialization":"Blacharka"}]
+    "specialists":[{"first_name":"Delaney","last_name":"Baxendale","email":"dbaxendale0@businesswire.com","address":"4 Bobwhite Trail","specialization":"Elektryk","rating":5},
+      {"first_name":"Zsazsa","last_name":"Lipprose","email":"zlipprose1@buzzfeed.com","address":"5 Oriole Hill","specialization":"Elektryk","rating":4},
+      {"first_name":"Corny","last_name":"Vynehall","email":"cvynehall2@eepurl.com","address":"237 Dexter Street","specialization":"Mechanik","rating":5},
+      {"first_name":"Travis","last_name":"Beall","email":"tbeall3@java.com","address":"48 Cottonwood Hill","specialization":"Zawieszenie","rating":3},
+      {"first_name":"Derwin","last_name":"Abdy","email":"dabdy4@theglobeandmail.com","address":"9 Springview Trail","specialization":"Mechanik","rating":3},
+      {"first_name":"Leah","last_name":"Boorer","email":"lboorer5@loc.gov","address":"87873 Warbler Circle","specialization":"Blacharz","rating":4},
+      {"first_name":"Anabel","last_name":"Rosebotham","email":"arosebotham6@npr.org","address":"7205 Transport Center","specialization":"Blacharz","rating":5}]
 }
