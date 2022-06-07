@@ -5,21 +5,21 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forRoot([
       {
-        path: 'auth',
+        path: 'login',
         loadChildren: async () => (await import('./auth/auth.module')).AuthModule,
       },
       {
-        path: 'app',
+        path: 'home',
         loadChildren: async () => (await import('./shell/shell.module')).ShellModule,
       },
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'app',
+        redirectTo: 'home',
       },
       {
         path: '**',
-        redirectTo: 'auth',
+        redirectTo: 'home',
       },
     ]),
   ],

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { AuthService } from 'app/auth/auth.service';
 
 @Component({
@@ -7,14 +7,12 @@ import { AuthService } from 'app/auth/auth.service';
   styleUrls: ['./header.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HeaderComponent implements AfterViewInit {
+export class HeaderComponent {
   // public isLogedIn!: boolean;
 
-  @ViewChild('logout') public logout!: ElementRef<HTMLLinkElement>;
+  public isLogedIn$ = this.auth.isLogedIn$;
+
+  public user$ = this.auth.user$;
 
   constructor(private auth: AuthService) {}
-
-  public ngAfterViewInit() {
-    console.log(this.logout.nativeElement.textContent);
-  }
 }

@@ -3,6 +3,7 @@ import { RouterModule } from '@angular/router';
 import { ShellComponent } from './shell.component';
 import { HeaderComponent } from './header/header.component';
 import { MatIconModule } from '@angular/material/icon';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [ShellComponent, HeaderComponent],
@@ -14,6 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
       },
     ]),
     MatIconModule,
+    CommonModule,
   ],
 })
 export class ShellModule {}

@@ -2,6 +2,10 @@
   <div class="header__container">
     <div class="header__logo"><mat-icon> directions_car</mat-icon><span>ZnanyMechol</span></div>
     <input type="text" class="header__search" placeholder="szukaj" />
-    <div class="header__login"><a [routerLink]="'auth'" #logout>Zaloguj</a><mat-icon>person</mat-icon></div>
+    <div class="header__login">
+      <a *ngIf="(isLogedIn$ | async) === false; else helloUser" [routerLink]="'/login'" #logout>Zaloguj</a
+      ><mat-icon>person</mat-icon>
+      <ng-template #helloUser>Witaj {{ (user$ | async)?.name }}</ng-template>
+    </div>
   </div>
 </div>
