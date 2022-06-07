@@ -8,8 +8,6 @@ import { AuthService } from 'app/auth/auth.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  // public isLogedIn!: boolean;
-
   public isLogedIn$ = this.auth.isLogedIn$;
 
   public user$ = this.auth.user$;
