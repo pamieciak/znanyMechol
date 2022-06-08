@@ -10,9 +10,10 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { FilterComponent } from './filter/filter.component';
 
 @NgModule({
-  declarations: [ShellComponent, HeaderComponent, SpecialistViewComponent, RatingPipe],
+  declarations: [ShellComponent, HeaderComponent, SpecialistViewComponent, RatingPipe, FilterComponent],
   imports: [
     RouterModule.forChild([
       {
