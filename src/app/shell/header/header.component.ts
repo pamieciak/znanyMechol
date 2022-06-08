@@ -1,6 +1,8 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { CommunicationService } from '@shared/services/communication.service';
 import { AuthService } from 'app/auth/auth.service';
+import { SpecialistService } from '../specialist-view/specialist.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +17,19 @@ export class HeaderComponent {
 
   public search = new FormControl('');
 
-  public value$ = this.search.valueChanges;
+  constructor(
+    private auth: AuthService,
+    private specialistApi: SpecialistService,
+    private share: CommunicationService
+  ) {}
 
-  constructor(private auth: AuthService) {}
+  public searchValue() {
+    if (this.search.value === '') {
+      this.specialistApi.getSpecialist();
+    } else {
+      this.specialistApi.getSpecialistByJob(this.search.value.toLowerCase());
+      this.share.sendValue(this.search.value);
+      console.log(this.search.value);
+    }
+  }
 }

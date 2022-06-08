@@ -1,15 +1,15 @@
 <div class="filter">
   <h1>Jakiego specjalisty szukasz?</h1>
   <div class="filter__buttons">
-    <button (click)="showSpecByJob('Elektryk')" class="filterBtn">Elektryk</button>
-    <button (click)="showSpecByJob('Mechanik')" class="filterBtn">Mechanik</button>
-    <button (click)="showSpecByJob('Zawieszenie')" class="filterBtn">Zawieszenie</button>
-    <button (click)="showSpecByJob('Blacharz')" class="filterBtn">Blacharz</button>
+    <button (click)="showSpecByJob('elektryk')" class="filterBtn">Elektryk</button>
+    <button (click)="showSpecByJob('mechanik')" class="filterBtn">Mechanik</button>
+    <button (click)="showSpecByJob('zawieszenie')" class="filterBtn">Zawieszenie</button>
+    <button (click)="showSpecByJob('blacharz')" class="filterBtn">Blacharz</button>
     <button (click)="clearFilter()" class="clearFilter">Wyczyść filtry</button>
   </div>
 </div>
-<div class="whatFilter" *ngIf="btnContent">
+<div class="whatFilter" *ngIf="inputValue$ | async as inputVal">
   <p>
-    Wyniki wyszukiwania: <span>{{ btnContent }}</span>
+    Wyniki wyszukiwania: <span>{{ inputVal | touppercase }}</span>
   </p>
 </div>

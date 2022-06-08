@@ -11,9 +11,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FilterComponent } from './filter/filter.component';
+import { TouppercasePipe } from './specialist-view/touppercase.pipe';
 
 @NgModule({
-  declarations: [ShellComponent, HeaderComponent, SpecialistViewComponent, RatingPipe, FilterComponent],
+  declarations: [ShellComponent, HeaderComponent, SpecialistViewComponent, RatingPipe, FilterComponent, TouppercasePipe],
   imports: [
     RouterModule.forChild([
       {
