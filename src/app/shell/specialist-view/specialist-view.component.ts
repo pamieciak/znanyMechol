@@ -8,8 +8,7 @@ import { SpecialistService } from './specialist.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SpecialistViewComponent {
-  // public selected!: Date | null;
-  public specialist$ = this.specialistApi.getSpecialist();
+  public specialist$ = this.specialistApi.specialistList$;
 
   constructor(private specialistApi: SpecialistService) {}
 }

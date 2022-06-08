@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { AuthService } from 'app/auth/auth.service';
 
 @Component({
@@ -11,6 +12,10 @@ export class HeaderComponent {
   public isLogedIn$ = this.auth.isLogedIn$;
 
   public user$ = this.auth.user$;
+
+  public search = new FormControl('');
+
+  public value$ = this.search.valueChanges;
 
   constructor(private auth: AuthService) {}
 }
