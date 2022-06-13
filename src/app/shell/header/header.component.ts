@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'app/auth/auth.service';
 import { ApiService } from '../specialist-view/api.service';
 
@@ -16,7 +17,13 @@ export class HeaderComponent {
 
   public search = new FormControl('');
 
-  constructor(private auth: AuthService, private specialistApi: ApiService) {}
+  constructor(private auth: AuthService, private specialistApi: ApiService, private router: Router) {}
+
+  public backToHome() {
+    this.router.navigate(['home']);
+    this.specialistApi.sendValue('');
+    this.specialistApi.getSpecialistList();
+  }
 
   public searchValue() {
     if (this.search.value === '') {

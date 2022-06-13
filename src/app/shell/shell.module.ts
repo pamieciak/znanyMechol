@@ -13,8 +13,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FilterComponent } from './filter/filter.component';
 import { TouppercasePipe } from './specialist-view/touppercase.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NbThemeModule, NbLayoutModule, NbIconModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbIconModule, NbStatusService } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { SpecialistDetailsComponent } from './specialist-details/specialist-details.component';
 
 @NgModule({
   declarations: [
@@ -24,12 +25,23 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     RatingPipe,
     FilterComponent,
     TouppercasePipe,
+    SpecialistDetailsComponent,
   ],
   imports: [
     RouterModule.forChild([
       {
         path: '',
         component: ShellComponent,
+        children: [
+          {
+            path: 'details/:id',
+            component: SpecialistDetailsComponent,
+          },
+          {
+            path: '',
+            component: SpecialistViewComponent,
+          },
+        ],
       },
     ]),
     MatIconModule,
@@ -44,6 +56,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbLayoutModule,
     NbEvaIconsModule,
     NbIconModule,
+    NbThemeModule,
   ],
+  providers: [NbStatusService],
 })
 export class ShellModule {}

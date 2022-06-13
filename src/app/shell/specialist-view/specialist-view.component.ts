@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from './api.service';
 
@@ -12,10 +12,14 @@ import { ApiService } from './api.service';
 export class SpecialistViewComponent implements OnInit {
   public specialist$ = this.specialistApi.searchAll$;
 
-  constructor(private specialistApi: ApiService, private route: ActivatedRoute) {}
+  constructor(private specialistApi: ApiService, private route: ActivatedRoute, private router: Router) {}
 
   public ngOnInit() {
-    // console.log(this.route.snapshot);
     return;
   }
+
+  // public showData(name: string, lastName: string) {
+  //   this.router.navigate([`details/${name}-${lastName}`], {});
+  //   this.specialistApi.sendValue(`${name}`);
+  // }
 }

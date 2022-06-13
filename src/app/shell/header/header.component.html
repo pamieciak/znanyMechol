@@ -1,7 +1,7 @@
 <div class="header">
   <div class="header__container">
     <div class="header__logo">
-      <a routerLink=""><span>Znany</span><nb-icon icon="settings-2-outline"></nb-icon><span>Mechol</span></a>
+      <a (click)="backToHome()"><span>Znany</span><nb-icon icon="settings-2-outline"></nb-icon><span>Mechol</span></a>
     </div>
     <input
       [formControl]="search"
@@ -11,7 +11,7 @@
       placeholder="szukaj specjalisty" />
     <div class="header__login">
       <a *ngIf="(isLogedIn$ | async) === false; else helloUser" [routerLink]="'/login'" #logout
-        >Zaloguj<nb-icon icon="log-in-outline"></nb-icon
+        >Zaloguj <nb-icon icon="log-in-outline"></nb-icon
       ></a>
       <ng-template #helloUser>Witaj {{ (user$ | async)?.name }}</ng-template>
     </div>
