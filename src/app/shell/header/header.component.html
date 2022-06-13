@@ -1,12 +1,19 @@
 <div class="header">
   <div class="header__container">
-    <div class="header__logo"><mat-icon> directions_car</mat-icon><span>ZnanyMechol</span></div>
-    <input [formControl]="search" type="text" class="header__search" placeholder="szukaj" />
+    <div class="header__logo">
+      <a routerLink=""><span>Znany</span><nb-icon icon="settings-2-outline"></nb-icon><span>Mechol</span></a>
+    </div>
+    <input
+      [formControl]="search"
+      (keyup.enter)="searchValue()"
+      type="text"
+      class="header__search"
+      placeholder="szukaj specjalisty" />
     <div class="header__login">
-      <a *ngIf="(isLogedIn$ | async) === false; else helloUser" [routerLink]="'/login'" #logout>Zaloguj</a
-      ><mat-icon>person</mat-icon>
+      <a *ngIf="(isLogedIn$ | async) === false; else helloUser" [routerLink]="'/login'" #logout
+        >Zaloguj<nb-icon icon="log-in-outline"></nb-icon
+      ></a>
       <ng-template #helloUser>Witaj {{ (user$ | async)?.name }}</ng-template>
     </div>
-    {{ value$ | async }}
   </div>
 </div>

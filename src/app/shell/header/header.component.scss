@@ -2,9 +2,8 @@
   width: 100vw;
   height: 8rem;
   background: rgb(0, 0, 0);
-  background: linear-gradient(45deg, rgba(0, 0, 0, 1) 0%, rgba(108, 116, 119, 1) 63%, rgba(193, 195, 194, 1) 100%);
   box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.411);
-  border-bottom: 2px solid #cdfc12;
+  border-bottom: 2px solid rgb(65, 180, 225);
 
   &__container {
     position: relative;
@@ -16,23 +15,24 @@
     align-items: center;
   }
 
-  &__logo {
+  &__logo > a {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 1rem;
     font-size: 4rem;
-    font-weight: 400;
+    font-weight: 300;
     color: white;
+    text-decoration: none;
 
-    mat-icon {
+    nb-icon {
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 5rem;
       width: 50px;
       height: 50px;
-      color: #cdfc12;
+      color: rgb(65, 180, 225);
     }
   }
 
@@ -41,16 +41,26 @@
     padding: 1rem;
     width: 30%;
     height: 3rem;
-    background-color: rgba(255, 255, 255, 0.575);
-    border: 1px solid black;
+    border: none;
+    background-color: transparent;
+    border-color: transparent;
+    border-bottom: 1px solid rgb(65, 180, 225);
     border-radius: 2px;
-    font-size: 1.3rem;
+    font-size: 1.6rem;
+    opacity: none;
+    transition: all 0.5s;
+    color: white;
   }
 
   input:focus {
-    background-color: #fff;
-    border: 2px solid #cdfc12;
+    background-color: rgb(233, 231, 231);
+    transform: scale(1.2);
+    color: black;
     outline: none;
+  }
+  input::placeholder {
+    color: white;
+    font-weight: 300;
   }
 
   &__login {
@@ -68,14 +78,18 @@
       color: white;
       text-decoration: none;
       transition: all 0.3s;
+      font-size: 2rem;
     }
 
     a:hover {
-      color: #cdfc12;
+      color: rgb(65, 180, 225);
     }
 
-    mat-icon {
-      color: #cdfc12;
+    nb-icon {
+      width: 30px;
+      height: 30px;
+      font-size: 2rem;
+      color: rgb(65, 180, 225);
     }
   }
 }

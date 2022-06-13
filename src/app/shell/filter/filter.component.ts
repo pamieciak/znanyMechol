@@ -1,5 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { SpecialistService } from '../specialist-view/specialist.service';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from '../specialist-view/api.service';
 
 @Component({
   selector: 'app-filter',
@@ -7,18 +8,27 @@ import { SpecialistService } from '../specialist-view/specialist.service';
   styleUrls: ['./filter.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FilterComponent {
-  public btnContent = '';
+export class FilterComponent implements OnInit {
+  public inputValue$ = this.specialistApi.shareValue$;
 
-  constructor(private specialistApi: SpecialistService) {}
+  constructor(private specialistApi: ApiService, private route: ActivatedRoute, private router: Router) {}
+
+  public ngOnInit() {
+    if (this.route.snapshot.queryParams['q']) {
+      this.specialistApi.getSpecialistList(this.route.snapshot.queryParams['q']);
+      this.specialistApi.sendValue(this.route.snapshot.queryParams['q']);
+    }
+  }
 
   public showSpecByJob(value: string) {
-    this.specialistApi.getSpecialistByJob(value);
-    this.btnContent = value;
+    this.specialistApi.getSpecialistList(value);
+    this.specialistApi.sendValue(value);
+    this.specialistApi.queryService(value);
   }
 
   public clearFilter() {
-    this.specialistApi.getSpecialist();
-    this.btnContent = '';
+    this.specialistApi.getSpecialistList();
+    this.specialistApi.sendValue('');
+    this.router.navigate(['home']);
   }
 }

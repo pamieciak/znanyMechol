@@ -1,5 +1,7 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { SpecialistService } from './specialist.service';
+import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { ApiService } from './api.service';
 
 @Component({
   selector: 'app-specialist-view',
@@ -7,8 +9,13 @@ import { SpecialistService } from './specialist.service';
   styleUrls: ['./specialist-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpecialistViewComponent {
-  public specialist$ = this.specialistApi.specialistList$;
+export class SpecialistViewComponent implements OnInit {
+  public specialist$ = this.specialistApi.searchAll$;
 
-  constructor(private specialistApi: SpecialistService) {}
+  constructor(private specialistApi: ApiService, private route: ActivatedRoute) {}
+
+  public ngOnInit() {
+    // console.log(this.route.snapshot);
+    return;
+  }
 }
