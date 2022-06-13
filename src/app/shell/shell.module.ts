@@ -12,9 +12,19 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FilterComponent } from './filter/filter.component';
 import { TouppercasePipe } from './specialist-view/touppercase.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NbThemeModule, NbLayoutModule, NbIconModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
-  declarations: [ShellComponent, HeaderComponent, SpecialistViewComponent, RatingPipe, FilterComponent, TouppercasePipe],
+  declarations: [
+    ShellComponent,
+    HeaderComponent,
+    SpecialistViewComponent,
+    RatingPipe,
+    FilterComponent,
+    TouppercasePipe,
+  ],
   imports: [
     RouterModule.forChild([
       {
@@ -29,6 +39,11 @@ import { TouppercasePipe } from './specialist-view/touppercase.pipe';
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    FontAwesomeModule,
+    NbThemeModule.forRoot({ name: 'default' }),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbIconModule,
   ],
 })
 export class ShellModule {}
