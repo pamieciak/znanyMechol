@@ -1,16 +1,12 @@
-<!-- {{ buttonContent | async }} -->
-<app-filter></app-filter>
-<ng-container *ngFor="let specialist of specialist$ | async">
+<ng-container *ngFor="let specialist of specDetails$ | async">
   <div class="specBox">
     <div class="specialistInfo">
       <div class="specialistInfo__img">
         <img src="https://via.placeholder.com/150" alt="placeholder_img" />
       </div>
       <div class="specialistInfo__data">
-        <a [routerLink]="['details', specialist.first_name + '-' + specialist.last_name]"
-          >{{ specialist.first_name }} {{ specialist.last_name }}</a
-        >
-        <br />
+        <p>{{ specialist.first_name }} {{ specialist.last_name }}</p>
+
         {{ specialist.specialization | touppercase }} <br />
         {{ specialist.rating | rating }}/5
       </div>
@@ -19,6 +15,7 @@
           Adres: <br />
           {{ specialist.address }}
         </p>
+        <button>Pokaż cennik</button>
       </div>
     </div>
     <div class="specialistCalendar">
@@ -28,5 +25,3 @@
     </div>
   </div>
 </ng-container>
-
-<!-- (click)="showData(specialist.first_name, specialist.last_name)" -->

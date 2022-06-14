@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Injectable, NgModule } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, RouterModule, RouterStateSnapshot } from '@angular/router';
 import { ShellComponent } from './shell.component';
 import { HeaderComponent } from './header/header.component';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,8 +13,22 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FilterComponent } from './filter/filter.component';
 import { TouppercasePipe } from './specialist-view/touppercase.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NbThemeModule, NbLayoutModule, NbIconModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbIconModule, NbStatusService } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { SpecialistDetailsComponent } from './specialist-details/specialist-details.component';
+import { Observable, tap, delay } from 'rxjs';
+import { Specialist } from './specialist-view/specialist.intefrace';
+import { ApiService } from './specialist-view/api.service';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ExcampleResolver implements Resolve<Observable<Specialist[]>> {
+  constructor(private apiService: ApiService) {}
+  public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Specialist[]> {
+    return this.apiService.searchAll$.pipe(delay(2000), tap(console.log));
+  }
+}
 
 @NgModule({
   declarations: [
@@ -24,12 +38,26 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     RatingPipe,
     FilterComponent,
     TouppercasePipe,
+    SpecialistDetailsComponent,
   ],
   imports: [
     RouterModule.forChild([
       {
         path: '',
         component: ShellComponent,
+        children: [
+          {
+            path: 'details/:id',
+            component: SpecialistDetailsComponent,
+          },
+          {
+            path: '',
+            component: SpecialistViewComponent,
+            resolve: {
+              myResolver: ExcampleResolver,
+            },
+          },
+        ],
       },
     ]),
     MatIconModule,
@@ -44,6 +72,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbLayoutModule,
     NbEvaIconsModule,
     NbIconModule,
+    NbThemeModule,
   ],
+  providers: [NbStatusService],
 })
 export class ShellModule {}
