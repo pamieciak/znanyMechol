@@ -1,11 +1,3 @@
-<!-- <app-header></app-header> -->
-
-<!-- <ng-container>
-  <div class="specDetailBox" *ngFor="let spec of specDetails$ | async">
-    {{ spec.first_name }}
-  </div>
-</ng-container> -->
-
 <ng-container *ngFor="let specialist of specDetails$ | async">
   <div class="specBox">
     <div class="specialistInfo">
@@ -23,6 +15,7 @@
           Adres: <br />
           {{ specialist.address }}
         </p>
+        <button>Pokaż cennik</button>
       </div>
     </div>
     <div class="specialistCalendar">

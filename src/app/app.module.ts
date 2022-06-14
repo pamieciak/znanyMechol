@@ -8,9 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbStatusService } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { MatDialogModule } from '@angular/material/dialog';
+import { LoaderDialogComponent } from './shared/components/loader-dialog/loader-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoaderDialogComponent],
+  entryComponents: [LoaderDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -18,6 +22,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     HttpClientModule,
     BrowserAnimationsModule,
     NbEvaIconsModule,
+    MatDialogModule,
+    MatProgressSpinnerModule,
   ],
   providers: [NbStatusService],
   bootstrap: [AppComponent],

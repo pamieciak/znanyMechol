@@ -33,16 +33,35 @@
       font-size: 1.6rem;
 
       p {
-        font-size: 2.5rem;
+        font-size: 3rem;
       }
     }
 
     &__adress {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       width: 100%;
       font-size: 1.6rem;
       p {
         margin-left: 2rem;
         margin-bottom: 1rem;
+      }
+      button {
+        position: relative;
+        margin: 0 auto;
+        display: block;
+
+        padding: 0.5rem 1rem;
+        // border: 1px solid black;
+
+        transition: all 0.3s;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: rgb(65, 180, 225);
+        transform: scale(1.1);
       }
     }
   }

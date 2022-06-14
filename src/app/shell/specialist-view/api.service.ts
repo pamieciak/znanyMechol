@@ -29,17 +29,19 @@ export class ApiService {
     if (value) {
       return this.http.get<Specialist[]>(`${this.API_URL}?q=${value}`).subscribe(search => {
         this.specialistList.next(search);
+        this.specialistList.complete();
       });
     } else {
       return this.http.get<Specialist[]>(this.API_URL).subscribe(specialists => {
         this.specialistList.next(specialists);
+        this.specialistList.complete();
       });
     }
   }
 
   public queryService(value: string) {
     const qParam: Params = { q: value };
-    this.router.navigate([], {
+    this.router.navigate(['home'], {
       queryParams: qParam,
       queryParamsHandling: 'merge',
     });

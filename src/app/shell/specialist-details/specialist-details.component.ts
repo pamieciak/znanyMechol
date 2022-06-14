@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, switchMap, tap } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { ApiService } from '../specialist-view/api.service';
 import { Specialist } from '../specialist-view/specialist.intefrace';
 
@@ -27,10 +27,8 @@ export class SpecialistDetailsComponent implements OnInit {
 
     this.specDetails$ = this.apiService.shareValue$.pipe(
       switchMap(res => {
-        console.log(res);
         return this.http.get<Specialist[]>(`${this.API_URL}?q=${res}`);
-      }),
-      tap(console.log)
+      })
     );
   }
 }

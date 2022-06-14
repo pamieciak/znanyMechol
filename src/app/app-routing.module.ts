@@ -12,7 +12,6 @@ import { RouterModule } from '@angular/router';
         path: 'home',
         loadChildren: async () => (await import('./shell/shell.module')).ShellModule,
       },
-
       {
         path: '',
         pathMatch: 'full',
