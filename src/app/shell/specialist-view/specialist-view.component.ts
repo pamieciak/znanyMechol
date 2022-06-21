@@ -12,7 +12,9 @@ import { ApiService } from './api.service';
 export class SpecialistViewComponent implements OnInit {
   public specialist$ = this.specialistApi.searchAll$;
 
-  constructor(private specialistApi: ApiService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private specialistApi: ApiService, private route: ActivatedRoute, private router: Router) {
+    this.specialistApi.getSpecialistList();
+  }
 
   public ngOnInit() {
     return;

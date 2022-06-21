@@ -17,7 +17,10 @@ import { NbThemeModule, NbLayoutModule, NbIconModule, NbStatusService } from '@n
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SpecialistDetailsComponent } from './specialist-details/specialist-details.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
-import { AdminGuard } from 'app/auth/admin.guard';
+import { AddSpecialistComponent } from './admin/add-specialist/add-specialist.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
 
 // import { Observable, tap, delay } from 'rxjs';
 // import { Specialist } from './specialist-view/specialist.intefrace';
@@ -43,6 +46,7 @@ import { AdminGuard } from 'app/auth/admin.guard';
     TouppercasePipe,
     SpecialistDetailsComponent,
     AdminDashboardComponent,
+    AddSpecialistComponent,
   ],
   imports: [
     RouterModule.forChild([
@@ -77,6 +81,9 @@ import { AdminGuard } from 'app/auth/admin.guard';
     NbEvaIconsModule,
     NbIconModule,
     NbThemeModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatInputModule,
   ],
   providers: [NbStatusService],
 })

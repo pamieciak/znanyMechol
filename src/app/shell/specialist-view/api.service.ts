@@ -25,6 +25,12 @@ export class ApiService {
     return this.specialistList.asObservable();
   }
 
+  public postSpecialist(data: Specialist) {
+    return this.http.post<Specialist[]>('http://localhost:3000/specialists', data).subscribe(data => {
+      this.specialistList.next(data);
+    });
+  }
+
   public getSpecialistList(value?: string | null | Observable<string>) {
     if (value) {
       return this.http.get<Specialist[]>(`${this.API_URL}?q=${value}`).subscribe(search => {

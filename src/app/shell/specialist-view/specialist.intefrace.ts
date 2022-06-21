@@ -5,4 +5,5 @@ export interface Specialist {
   address: string;
   specialization: string;
   rating: number;
+  id?: number;
 }

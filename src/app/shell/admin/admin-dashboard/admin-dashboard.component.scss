@@ -5,9 +5,9 @@
   justify-content: space-around;
   align-items: center;
   margin: 1rem;
-  width: 200px;
+  width: 150px;
   height: 85vh;
-  background: rgba(58, 58, 58, 0.6);
+  background: rgba(58, 58, 58, 0.8);
 
   &__add{
     background: transparent;
@@ -18,5 +18,11 @@
     width: 70px;
     height: 70px;
     padding: 1rem;
+    transition: all 0.6s;
+    cursor: pointer;
+  }
+  button:hover{
+    background-color: #fff;
+  color: black;
   }
 }

@@ -1,8 +1,6 @@
-import { JsonpClientBackend } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { faLeaf } from '@fortawesome/free-solid-svg-icons';
-import { map, Observable, take, tap } from 'rxjs';
+import { Observable, take, tap } from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
