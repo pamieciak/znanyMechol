@@ -1,0 +1,22 @@
+.adminPanel{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1rem;
+  width: 200px;
+  height: 85vh;
+  background: rgba(58, 58, 58, 0.6);
+
+  &__add{
+    background: transparent;
+    border-radius: 50%;
+    outline: none;
+    border: 1px solid white;
+    color: white;
+    width: 70px;
+    height: 70px;
+    padding: 1rem;
+  }
+}

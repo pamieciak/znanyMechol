@@ -3,17 +3,25 @@
     <div class="header__logo">
       <a (click)="backToHome()"><span>Znany</span><nb-icon icon="settings-2-outline"></nb-icon><span>Mechol</span></a>
     </div>
+
     <input
+      *ngIf="(isAdmin$ | async) === false; else adminInfo"
       [formControl]="search"
       (keyup.enter)="searchValue()"
       type="text"
       class="header__search"
       placeholder="szukaj specjalisty" />
+    <ng-template #adminInfo>
+      <h2>PANEL ADMINA</h2>
+    </ng-template>
     <div class="header__login">
-      <a *ngIf="(isLogedIn$ | async) === false; else helloUser" [routerLink]="'/login'" #logout
+      <a *ngIf="(isLogedIn$ | async) === false; else helloUser" [routerLink]="'/login'"
         >Zaloguj <nb-icon icon="log-in-outline"></nb-icon
       ></a>
-      <ng-template #helloUser>Witaj {{ (user$ | async)?.name }}</ng-template>
+      <ng-template #helloUser
+        ><p class="welcomeP">
+          Witaj {{ (user$ | async)?.name }} <a (click)="logout()"><nb-icon icon="log-out-outline"></nb-icon></a></p
+      ></ng-template>
     </div>
   </div>
 </div>

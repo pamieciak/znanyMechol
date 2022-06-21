@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AdminGuard } from './auth/admin.guard';
+import { AdminDashboardComponent } from './shell/admin/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   imports: [
@@ -11,6 +13,11 @@ import { RouterModule } from '@angular/router';
       {
         path: 'home',
         loadChildren: async () => (await import('./shell/shell.module')).ShellModule,
+      },
+      {
+        path: 'admin-dashboard',
+        component: AdminDashboardComponent,
+        canActivate: [AdminGuard],
       },
       {
         path: '',
