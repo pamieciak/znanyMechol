@@ -11,6 +11,7 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MatDialogModule } from '@angular/material/dialog';
 import { LoaderDialogComponent } from './shared/components/loader-dialog/loader-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent, LoaderDialogComponent],
@@ -24,6 +25,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     NbEvaIconsModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    ToastrModule.forRoot({
+      timeOut: 4000, // 15 seconds
+      closeButton: true,
+      progressBar: true,
+    }),
   ],
   providers: [NbStatusService],
   bootstrap: [AppComponent],

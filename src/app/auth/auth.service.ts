@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, map, ReplaySubject, tap } from 'rxjs';
 import { User } from './user.interface';
 
@@ -14,7 +15,11 @@ export class AuthService {
 
   private readonly user = new ReplaySubject<User>(1);
 
-  constructor(private authApi: HttpClient, private router: Router) {}
+  private readonly isAdmin = new BehaviorSubject<boolean>(false);
+
+  constructor(private authApi: HttpClient, private router: Router, private toastr: ToastrService) {
+    this.isAutorised();
+  }
 
   public get isLogedIn$() {
     return this.isLogedIn.asObservable();
@@ -24,6 +29,10 @@ export class AuthService {
     return this.user.asObservable();
   }
 
+  public get isAdmin$() {
+    return this.isAdmin.asObservable();
+  }
+
   public logIn(email: string, password: string) {
     return this.authApi.get<User[]>(`${this.API_URL}?email=${email}&password=${password}`).pipe(
       map(users => {
@@ -31,18 +40,46 @@ export class AuthService {
         //sideEffect
         if (hasUsers) {
           this.user.next(users[0]);
+          localStorage.setItem('user', JSON.stringify(users[0]));
+
+          if (users[0].role !== 'admin') {
+            this.isAdmin.next(false);
+          } else {
+            this.isAdmin.next(true);
+          }
         }
         return hasUsers;
       }),
       tap(isLogIn => {
         if (isLogIn) {
-          alert('logowanie prawidłowe');
+          this.toastr.success('Logowanie prawidłowe', 'Sukces!');
           this.isLogedIn.next(true);
-          this.router.navigate(['home']);
+          this.router.navigate(['/admin-dashboard']);
         } else {
-          alert('nie udało się zalogować');
+          this.toastr.error('Logowanie nieprawidłowe', 'Uwaga!');
         }
       })
     );
+  }
+
+  public logOut() {
+    this.isLogedIn.next(false);
+    this.isAdmin.next(false);
+    this.toastr.success('Wylogowano', 'Sukces!');
+  }
+
+  private isAutorised() {
+    const user = JSON.parse(String(localStorage.getItem('user')));
+    if (!user) {
+      return;
+    } else {
+      this.user.next(user);
+      if (user.role !== 'admin') {
+        this.isAdmin.next(false);
+      } else {
+        this.isAdmin.next(true);
+      }
+      this.isLogedIn.next(true);
+    }
   }
 }

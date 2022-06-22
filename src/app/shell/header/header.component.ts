@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'app/auth/auth.service';
+
 import { ApiService } from '../specialist-view/api.service';
 
 @Component({
@@ -17,12 +18,18 @@ export class HeaderComponent {
 
   public search = new FormControl('');
 
+  public isAdmin$ = this.auth.isAdmin$;
+
   constructor(private auth: AuthService, private specialistApi: ApiService, private router: Router) {}
 
   public backToHome() {
-    this.router.navigate(['home']);
-    this.specialistApi.sendValue('');
-    this.specialistApi.getSpecialistList();
+    if (this.isAdmin$) {
+      this.router.navigate(['/admin-dashboard']);
+    } else {
+      this.router.navigate(['/home']);
+      this.specialistApi.sendValue('');
+      this.specialistApi.getSpecialistList();
+    }
   }
 
   public searchValue() {
@@ -33,5 +40,11 @@ export class HeaderComponent {
       this.specialistApi.sendValue(this.search.value);
       this.specialistApi.queryService(this.search.value);
     }
+  }
+
+  public logout() {
+    localStorage.removeItem('user');
+    this.router.navigate(['/home']);
+    this.auth.logOut();
   }
 }

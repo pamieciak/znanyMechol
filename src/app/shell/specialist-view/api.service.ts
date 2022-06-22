@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Params, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 import { Specialist } from './specialist.intefrace';
 
@@ -14,7 +15,7 @@ export class ApiService {
 
   private readonly searchValue = new ReplaySubject<string>(1);
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {
     this.getSpecialistList();
   }
   public get shareValue$() {
@@ -25,16 +26,24 @@ export class ApiService {
     return this.specialistList.asObservable();
   }
 
+  public postSpecialist(data: Specialist) {
+    this.http.post<Specialist[]>('http://localhost:3000/specialists', data).subscribe();
+    this.getSpecialistList();
+  }
+
+  public deleteSpecialist(id: number | undefined) {
+    this.http.delete<Specialist[]>(`${this.API_URL}/${id}`).subscribe();
+    this.getSpecialistList();
+  }
+
   public getSpecialistList(value?: string | null | Observable<string>) {
     if (value) {
       return this.http.get<Specialist[]>(`${this.API_URL}?q=${value}`).subscribe(search => {
         this.specialistList.next(search);
-        this.specialistList.complete();
       });
     } else {
       return this.http.get<Specialist[]>(this.API_URL).subscribe(specialists => {
         this.specialistList.next(specialists);
-        this.specialistList.complete();
       });
     }
   }
