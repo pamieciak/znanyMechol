@@ -1,0 +1,10 @@
+<div class="specList">
+  <ng-container *ngFor="let specialist of adminlist$ | async">
+    <div class="specList__data">
+      <p>{{ specialist.first_name }} {{ specialist.last_name }}</p>
+      <button class="specList__delete" (click)="delete(specialist.id)">
+        <nb-icon icon="close-circle-outline"></nb-icon>
+      </button>
+    </div>
+  </ng-container>
+</div>

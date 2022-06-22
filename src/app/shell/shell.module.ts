@@ -21,6 +21,8 @@ import { AddSpecialistComponent } from './admin/add-specialist/add-specialist.co
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { EditListComponent } from './admin/edit-list/edit-list.component';
 
 // import { Observable, tap, delay } from 'rxjs';
 // import { Specialist } from './specialist-view/specialist.intefrace';
@@ -47,6 +49,7 @@ import { MatInputModule } from '@angular/material/input';
     SpecialistDetailsComponent,
     AdminDashboardComponent,
     AddSpecialistComponent,
+    EditListComponent,
   ],
   imports: [
     RouterModule.forChild([
@@ -84,6 +87,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
+    MatProgressSpinnerModule,
   ],
   providers: [NbStatusService],
 })
