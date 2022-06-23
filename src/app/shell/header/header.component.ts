@@ -12,6 +12,7 @@ import { ApiService } from '../specialist-view/api.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
+  public openM = false;
   public isLogedIn$ = this.auth.isLogedIn$;
 
   public user$ = this.auth.user$;
@@ -42,9 +43,19 @@ export class HeaderComponent {
     }
   }
 
+  public openModal() {
+    this.openM = !this.openM;
+  }
+
+  public closeModal() {
+    if (this.openM) {
+      this.openM = false;
+    }
+  }
   public logout() {
     localStorage.removeItem('user');
     this.router.navigate(['/home']);
     this.auth.logOut();
+    this.openM = false;
   }
 }

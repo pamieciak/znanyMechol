@@ -1,8 +1,11 @@
 <app-header></app-header>
 
-<div class="adminPanel">
+<div class="adminPanel" #div>
+  <p>Witaj {{ (user$ | async)?.name }}</p>
   <button (click)="showAddingForm()" class="adminPanel__add"><nb-icon icon="person-add-outline"></nb-icon></button>
-  <button (click)="openEditList()" class="adminPanel__add"><nb-icon icon="list-outline"></nb-icon></button>
+  <button #listButton (click)="openEditList()" class="adminPanel__add list">
+    <nb-icon icon="list-outline"></nb-icon>
+  </button>
 </div>
 <app-add-specialist *ngIf="openForm" (closeForm)="close($event)"></app-add-specialist>
 <mat-spinner *ngIf="spinner" class="mat-spinner-color"></mat-spinner>

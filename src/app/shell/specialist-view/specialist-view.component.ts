@@ -14,6 +14,7 @@ export class SpecialistViewComponent implements OnInit {
 
   constructor(private specialistApi: ApiService, private route: ActivatedRoute, private router: Router) {
     this.specialistApi.getSpecialistList();
+    this.specialistApi.sendValue('');
   }
 
   public ngOnInit() {

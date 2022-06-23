@@ -12,15 +12,25 @@
   border-radius: 8px;
   overflow-y: scroll;
 
+
+  &__title{
+
+
+    color: white;
+    font-size: 4rem;
+  }
+
   &__data{
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding: 1rem;
-    font-size: 3rem;
+    padding: 1rem 4rem;
+    font-size: 2rem;
     color: white;
-    border-bottom: 1px solid rgb(65, 180, 225)
+    border-bottom: 1px solid rgb(65, 180, 225);
+
+
   }
 
   &__delete{
@@ -40,3 +50,76 @@
   }
 
   }
+
+
+  .confirmationModal{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.468) ;
+
+    &__content{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 400px;
+      height: 300px;
+      background-color: #fff;
+      border-radius: 8px;
+      text-align: center;
+
+      p{
+        font-size: 4rem;
+      }
+    }
+
+    &__buttons {
+      padding: 1rem;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+
+      button{
+        margin: 0rem 1rem;
+      padding: 0.5rem 1rem;
+      font-size: 1.6rem;
+      border-radius: 8px;
+      border: 1px solid grey;
+      transition: all 0.3s;
+      cursor: pointer;
+      }
+
+      .cancelBtn:hover {
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(65, 180, 225);
+        transform: scale(1.1);
+      }
+
+      .deleteBtn:hover {
+        background-color: rgb(219, 90, 90);
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  mat-spinner {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(65, 180, 225);
+    z-index: 3;
+  }
+  .mat-spinner-color::ng-deep circle {
+    stroke: rgb(65, 180, 225) !important;
+  }
+

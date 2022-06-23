@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "name": "Rafal",
+      "name": "Rafał",
       "email": "rafal@admin.pl",
       "password": "123456",
       "role": "admin"

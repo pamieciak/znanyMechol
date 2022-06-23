@@ -19,9 +19,20 @@
         >Zaloguj <nb-icon icon="log-in-outline"></nb-icon
       ></a>
       <ng-template #helloUser
-        ><p class="welcomeP">
-          Witaj {{ (user$ | async)?.name }} <a (click)="logout()"><nb-icon icon="log-out-outline"></nb-icon></a></p
+        ><div class="welcomeP">
+          <a (click)="openModal()">Wyloguj <nb-icon icon="log-out-outline"></nb-icon></a></div
       ></ng-template>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="openM" class="confirmationModal">
+  <div class="confirmationModal__content">
+    <h1>{{ (user$ | async)?.name }},</h1>
+    <h2>Czy na pewno chcesz się wylogować?</h2>
+    <div class="confirmationModal__buttons">
+      <button class="cancelBtn" (click)="closeModal()">Anuluj</button>
+      <button class="deleteBtn" (click)="logout()">Tak, wyloguj mnie</button>
     </div>
   </div>
 </div>

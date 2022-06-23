@@ -19,7 +19,7 @@
         <mat-error *ngIf="form.controls['last_name'].errors?.['required']">imię jest wymagane!</mat-error>
         <mat-error *ngIf="form.controls['last_name'].errors?.['minlength']">za krótkie dane!</mat-error>
         <mat-error *ngIf="form.controls['last_name'].errors?.['pattern']"
-          >imię musi zaczynać się od dużej litery!</mat-error
+          >nazwisko musi zaczynać się od dużej litery!</mat-error
         >
       </mat-form-field>
       <mat-form-field>
@@ -34,7 +34,12 @@
         <mat-error *ngIf="form.controls['address'].errors?.['required']">imię jest wymagane!</mat-error>
         <mat-error *ngIf="form.controls['address'].errors?.['minlength']">za krótkie dane!</mat-error>
       </mat-form-field>
-      <button [disabled]="!this.form.valid" mat-raised-button class="addForm__button">Dodaj użytkownika</button>
+      <label class="rating">
+        <p>Nadaj pierwszy rating: <span>(opcjonalne)</span></p>
+        <star-rating [starType]="'svg'" [rating]="3" (starClickChange)="onClick($event)"></star-rating>
+      </label>
+
+      <button [disabled]="!this.form.valid" mat-raised-button class="addForm__button">Dodaj specjalistę</button>
     </form>
   </div>
 </ng-container>

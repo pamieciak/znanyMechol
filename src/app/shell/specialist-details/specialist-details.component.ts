@@ -22,9 +22,7 @@ export class SpecialistDetailsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.id = this.routes.snapshot.paramMap.get('id')?.split('-').pop();
-
     this.apiService.sendValue(this.id);
-
     this.specDetails$ = this.apiService.shareValue$.pipe(
       switchMap(res => {
         return this.http.get<Specialist[]>(`${this.API_URL}?q=${res}`);

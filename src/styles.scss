@@ -3,6 +3,7 @@
 
 @import '../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~ngx-toastr/toastr';
+@import '~css-star-rating/css/star-rating.min.css';
 
 * {
   font-family: Lato, sans-serif;
@@ -49,3 +50,16 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #595858;
 }
+
+
+.ngx-toastr {
+  width: 350px !important;  // Specify toastr-dialog width for all devices
+  font-size: 1.5rem !important;// Specify toastr-dialog width for all devices
+}
+
+.mat-tooltip{
+  width: 150px !important;
+  font-size: 1.5rem !important;
+  text-align: center !important;
+}
+
