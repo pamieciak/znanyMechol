@@ -13,7 +13,15 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { FilterComponent } from './filter/filter.component';
 import { TouppercasePipe } from './specialist-view/touppercase.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NbThemeModule, NbLayoutModule, NbIconModule, NbStatusService } from '@nebular/theme';
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbIconModule,
+  NbStatusService,
+  NbDialogModule,
+  NbCardModule,
+  NbDialogService,
+} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { SpecialistDetailsComponent } from './specialist-details/specialist-details.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
@@ -23,6 +31,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EditListComponent } from './admin/edit-list/edit-list.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { StarRatingModule } from 'angular-star-rating';
 
 // import { Observable, tap, delay } from 'rxjs';
 // import { Specialist } from './specialist-view/specialist.intefrace';
@@ -80,15 +90,19 @@ import { EditListComponent } from './admin/edit-list/edit-list.component';
     MatNativeDateModule,
     FontAwesomeModule,
     NbThemeModule.forRoot({ name: 'default' }),
+    NbDialogModule.forRoot(),
+    StarRatingModule.forRoot(),
     NbLayoutModule,
     NbEvaIconsModule,
     NbIconModule,
     NbThemeModule,
+    NbCardModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
     MatProgressSpinnerModule,
+    MatTooltipModule,
   ],
-  providers: [NbStatusService],
+  providers: [NbStatusService, NbDialogService],
 })
 export class ShellModule {}

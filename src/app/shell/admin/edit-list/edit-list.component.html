@@ -1,10 +1,34 @@
 <div class="specList">
-  <ng-container *ngFor="let specialist of adminlist$ | async">
-    <div class="specList__data">
-      <p>{{ specialist.first_name }} {{ specialist.last_name }}</p>
-      <button class="specList__delete" (click)="delete(specialist.id)">
-        <nb-icon icon="close-circle-outline"></nb-icon>
-      </button>
-    </div>
+  <h1 class="specList__title">Lista specjalistów</h1>
+  <ng-container *ngIf="!deleting">
+    <ng-container *ngFor="let specialist of adminlist$ | async">
+      <div class="specList__data">
+        <p
+          matTooltip="{{ specialist.specialization }} {{ specialist.rating | rating }}"
+          matTooltipPosition="left"
+          matTooltipClass="tooltip">
+          {{ specialist.first_name }} {{ specialist.last_name }}
+        </p>
+        <button
+          class="specList__delete"
+          (click)="openModal(specialist.first_name, specialist.last_name, specialist.id)">
+          <nb-icon icon="close-circle-outline"></nb-icon>
+        </button>
+      </div>
+    </ng-container>
   </ng-container>
+  <ng-container *ngIf="deleting">
+    <mat-spinner class="mat-spinner-color"></mat-spinner>
+  </ng-container>
+</div>
+
+<div *ngIf="openM" class="confirmationModal">
+  <div class="confirmationModal__content">
+    <h1>Czy na pewno chcesz usunąć specjalistę?</h1>
+    <p>{{ name }} {{ surname }}</p>
+    <div class="confirmationModal__buttons">
+      <button class="cancelBtn" (click)="closeModal()">Anuluj</button>
+      <button class="deleteBtn" (click)="delete()">Tak, usuń</button>
+    </div>
+  </div>
 </div>
