@@ -6,7 +6,11 @@
   <button #listButton (click)="openEditList()" class="adminPanel__add list">
     <nb-icon icon="list-outline"></nb-icon>
   </button>
+  <button #listButton (click)="openUsers()" class="adminPanel__add list">
+    <nb-icon icon="people-outline"></nb-icon>
+  </button>
 </div>
 <app-add-specialist *ngIf="openForm" (closeForm)="close($event)"></app-add-specialist>
 <mat-spinner *ngIf="spinner" class="mat-spinner-color"></mat-spinner>
 <app-edit-list *ngIf="openList"></app-edit-list>
+<app-user-list *ngIf="openUserList"></app-user-list>

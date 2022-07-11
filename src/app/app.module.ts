@@ -1,4 +1,4 @@
-import { InjectionToken, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -14,6 +14,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { StarRatingModule } from 'angular-star-rating';
+import { MatSelectModule } from '@angular/material/select';
+import { AppState } from './store/app.state';
+import { authReducer } from './store/auth';
+import { isAdminRecucer } from './store/isAdmin/isAdmin.reducer';
 
 @NgModule({
   declarations: [AppComponent, LoaderDialogComponent],
@@ -21,7 +25,13 @@ import { StarRatingModule } from 'angular-star-rating';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot<AppState>(
+      {
+        auth: authReducer,
+        isAdmin: isAdminRecucer,
+      },
+      {}
+    ),
     HttpClientModule,
     BrowserAnimationsModule,
     NbEvaIconsModule,
@@ -35,6 +45,7 @@ import { StarRatingModule } from 'angular-star-rating';
     }),
     MatTooltipModule,
     StarRatingModule.forRoot(),
+    MatSelectModule,
   ],
   providers: [NbStatusService],
   bootstrap: [AppComponent],

@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from './store/app.state';
 
 export type x = {
   name: string;
@@ -12,19 +14,7 @@ export type x = {
 export class AppComponent {
   // public loader = false;
 
-  constructor() {
-    // this.router.events
-    //   .pipe(
-    //     // filter(event => event instanceof ResolveStart),
-    //     tap(res => {
-    //       console.log(res);
-    //       if (res instanceof ResolveStart) {
-    //         this.dialog.open(LoaderDialogComponent);
-    //       } else if (res instanceof ResolveEnd) {
-    //         this.dialog.closeAll();
-    //       }
-    //     })
-    //   )
-    //   .subscribe();
-  }
+  public auth$ = this.store.select(state => state.auth.isAuth);
+  public isAdmin$ = this.store.select(state => state.isAdmin.isAdmin);
+  constructor(private store: Store<AppState>) {}
 }

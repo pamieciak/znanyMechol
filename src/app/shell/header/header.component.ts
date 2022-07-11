@@ -1,7 +1,9 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { AuthService } from 'app/auth/auth.service';
+import { AppState } from 'app/store/app.state';
 
 import { ApiService } from '../specialist-view/api.service';
 
@@ -13,15 +15,20 @@ import { ApiService } from '../specialist-view/api.service';
 })
 export class HeaderComponent {
   public openM = false;
-  public isLogedIn$ = this.auth.isLogedIn$;
+  public isLogedIn$ = this.store.select(state => state.auth.isAuth);
 
   public user$ = this.auth.user$;
 
   public search = new FormControl('');
 
-  public isAdmin$ = this.auth.isAdmin$;
+  public isAdmin$ = this.store.select(state => state.isAdmin.isAdmin);
 
-  constructor(private auth: AuthService, private specialistApi: ApiService, private router: Router) {}
+  constructor(
+    private auth: AuthService,
+    private specialistApi: ApiService,
+    private router: Router,
+    private store: Store<AppState>
+  ) {}
 
   public backToHome() {
     if (this.isAdmin$) {

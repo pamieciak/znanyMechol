@@ -9,7 +9,6 @@
     <mat-form-field>
       <input matInput placeholder="podaj hasło" type="password" formControlName="password" />
       <mat-error *ngIf="authForm.controls['password'].errors?.['required']">Hasło jest wymagane!</mat-error>
-      <mat-error *ngIf="authForm.controls['password'].errors?.['minlength']">Za krótkie hasło</mat-error>
     </mat-form-field>
     <button mat-raised-button>Zaloguj</button>
   </form>

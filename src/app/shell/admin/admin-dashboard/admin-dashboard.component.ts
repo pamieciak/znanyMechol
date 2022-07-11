@@ -21,6 +21,7 @@ export class AdminDashboardComponent implements OnInit {
   public openForm = false;
   public openList = false;
   public spinner = false;
+  public openUserList = true;
 
   public user$ = this.auth.user$;
 
@@ -34,18 +35,29 @@ export class AdminDashboardComponent implements OnInit {
   ngOnInit(): void {}
 
   public showAddingForm() {
-    if (this.openList) {
+    if (this.openList || this.openUserList) {
       this.openList = false;
+      this.openUserList = false;
     }
     this.openForm = !this.openForm;
   }
 
   public openEditList() {
-    if (this.openForm) {
+    if (this.openForm || this.openUserList) {
       this.openForm = false;
+      this.openUserList = false;
     }
     this.openList = !this.openList;
     this.apiService.getSpecialistList();
+  }
+
+  public openUsers() {
+    if (this.openList || this.openForm) {
+      this.openList = false;
+      this.openForm = false;
+    }
+
+    this.openUserList = !this.openUserList;
   }
 
   public close(isClosed: boolean) {

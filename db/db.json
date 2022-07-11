@@ -11,15 +11,21 @@
       "email": "robert@user.pl",
       "password": "123456",
       "role": "user"
+    },
+    {
+      "name": "Oskar",
+      "email": "oski@oski.pl",
+      "password": "123456",
+      "role": "user"
     }
   ],
   "specialists": [
     {
       "first_name": "Delaney",
       "last_name": "Baxendale",
-      "email": "dbaxendale0@businesswire.com",
-      "address": "4 Bobwhite Trail",
       "specialization": "elektryk",
+      "address": "4 Bobwhite Trail",
+      "email": "",
       "rating": 5,
       "id": 1
     },
@@ -35,45 +41,45 @@
     {
       "first_name": "Corny",
       "last_name": "Vynehall",
-      "email": "cvynehall2@eepurl.com",
-      "address": "237 Dexter Street",
       "specialization": "mechanik",
+      "address": "237 Dexter Streete",
+      "email": "",
       "rating": 5,
       "id": 3
     },
     {
       "first_name": "Travis",
       "last_name": "Beall",
-      "email": "tbeall3@java.com",
-      "address": "48 Cottonwood Hill",
       "specialization": "zawieszenie",
+      "address": "48 Cottonwood Hill",
+      "email": "",
       "rating": 3,
       "id": 4
     },
     {
       "first_name": "Derwin",
       "last_name": "Abdy",
-      "email": "dabdy4@theglobeandmail.com",
-      "address": "9 Springview Trail",
       "specialization": "mechanik",
+      "address": "9 Springview Trail",
+      "email": "",
       "rating": 3,
       "id": 5
     },
     {
       "first_name": "Leah",
       "last_name": "Boorer",
-      "email": "lboorer5@loc.gov",
-      "address": "87873 Warbler Circle",
       "specialization": "blacharz",
+      "address": "87873 Warbler Circle",
+      "email": "",
       "rating": 4,
       "id": 6
     },
     {
       "first_name": "Anabel",
       "last_name": "Rosebotham",
-      "email": "arosebotham6@npr.org",
-      "address": "7205 Transport Center",
       "specialization": "blacharz",
+      "address": "7205 Transport Centerrrr",
+      "email": "",
       "rating": 5,
       "id": 7
     }

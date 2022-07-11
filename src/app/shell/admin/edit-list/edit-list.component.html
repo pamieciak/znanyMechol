@@ -9,11 +9,16 @@
           matTooltipClass="tooltip">
           {{ specialist.first_name }} {{ specialist.last_name }}
         </p>
-        <button
-          class="specList__delete"
-          (click)="openModal(specialist.first_name, specialist.last_name, specialist.id)">
-          <nb-icon icon="close-circle-outline"></nb-icon>
-        </button>
+        <div>
+          <button class="specList__edit" (click)="openEditor(specialist)">
+            <nb-icon icon="edit-2-outline"></nb-icon>
+          </button>
+          <button
+            class="specList__delete"
+            (click)="openModal(specialist.first_name, specialist.last_name, specialist.id)">
+            <nb-icon icon="close-circle-outline"></nb-icon>
+          </button>
+        </div>
       </div>
     </ng-container>
   </ng-container>
@@ -28,7 +33,54 @@
     <p>{{ name }} {{ surname }}</p>
     <div class="confirmationModal__buttons">
       <button class="cancelBtn" (click)="closeModal()">Anuluj</button>
-      <button class="deleteBtn" (click)="delete()">Tak, usuń</button>
+      <button class="deleteBtn" (click)="deleteSpecialist()">Tak, usuń</button>
     </div>
+  </div>
+</div>
+
+<div *ngIf="openEdit" class="editModal">
+  <div class="editModal__content">
+    <ng-container *ngIf="!editing">
+      <h1>Edytuj dane specjalisty</h1>
+      <form [formGroup]="editForm" (ngSubmit)="editData()">
+        <mat-form-field>
+          <input matInput type="text" formControlName="first_name" />
+          <mat-placeholder class="placeholder">Edytuj imię:</mat-placeholder>
+          <mat-error *ngIf="editForm.controls['first_name'].errors?.['required']">imię jest wymagane!</mat-error>
+          <mat-error *ngIf="editForm.controls['first_name'].errors?.['minlength']">za krótkie dane!</mat-error>
+          <mat-error *ngIf="editForm.controls['first_name'].errors?.['pattern']"
+            >imię musi zaczynać się od dużej litery!</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" formControlName="last_name" />
+          <mat-placeholder class="placeholder">Edytuj nazwisko:</mat-placeholder>
+          <mat-error *ngIf="editForm.controls['last_name'].errors?.['required']">imię jest wymagane!</mat-error>
+          <mat-error *ngIf="editForm.controls['last_name'].errors?.['minlength']">za krótkie dane!</mat-error>
+          <mat-error *ngIf="editForm.controls['last_name'].errors?.['pattern']"
+            >nazwisko musi zaczynać się od dużej litery!</mat-error
+          >
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" formControlName="specialization" />
+          <mat-placeholder class="placeholder">Edytuj specjalizację:</mat-placeholder>
+          <mat-error *ngIf="editForm.controls['specialization'].errors?.['required']">imię jest wymagane!</mat-error>
+          <mat-error *ngIf="editForm.controls['specialization'].errors?.['minlength']">za krótkie dane!</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="text" formControlName="address" />
+          <mat-placeholder class="placeholder">Edytuj adres:</mat-placeholder>
+          <mat-error *ngIf="editForm.controls['address'].errors?.['required']">imię jest wymagane!</mat-error>
+          <mat-error *ngIf="editForm.controls['address'].errors?.['minlength']">za krótkie dane!</mat-error>
+        </mat-form-field>
+        <div>
+          <button type="button" mat-raised-button class="cancelBtn" (click)="closeEdit()">Anuluj</button>
+          <button mat-raised-button class="editBtn">Edytuj dane specjalisty</button>
+        </div>
+      </form>
+    </ng-container>
+    <ng-container *ngIf="editing">
+      <mat-spinner class="mat-spinner-color"></mat-spinner>
+    </ng-container>
   </div>
 </div>

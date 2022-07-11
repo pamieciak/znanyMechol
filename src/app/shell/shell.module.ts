@@ -33,6 +33,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EditListComponent } from './admin/edit-list/edit-list.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { StarRatingModule } from 'angular-star-rating';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatSelectModule } from '@angular/material/select';
+import { UserListComponent } from './admin/user-list/user-list.component';
 
 // import { Observable, tap, delay } from 'rxjs';
 // import { Specialist } from './specialist-view/specialist.intefrace';
@@ -60,6 +63,7 @@ import { StarRatingModule } from 'angular-star-rating';
     AdminDashboardComponent,
     AddSpecialistComponent,
     EditListComponent,
+    UserListComponent,
   ],
   imports: [
     RouterModule.forChild([
@@ -81,10 +85,10 @@ import { StarRatingModule } from 'angular-star-rating';
         ],
       },
     ]),
-    MatIconModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
     MatCardModule,
     MatDatepickerModule,
     MatNativeDateModule,
@@ -102,6 +106,8 @@ import { StarRatingModule } from 'angular-star-rating';
     MatInputModule,
     MatProgressSpinnerModule,
     MatTooltipModule,
+    MatSelectModule,
+    ScrollingModule,
   ],
   providers: [NbStatusService, NbDialogService],
 })

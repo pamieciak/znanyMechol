@@ -30,6 +30,10 @@
     height: 100%;
     width: 80%;
 
+    mat-label{
+      color: white;
+    }
+
 
     mat-form-field{
       font-size: 2rem;
@@ -74,6 +78,15 @@
   }
 }
 
+::ng-deep .mat-select-value{
+  color: white;
+}
+::ng-deep .mat-select{
+  color: black;
+}
+::ng-deep .mat-option{
+  color:  rgb(65, 180, 225);
+}
 
 ::ng-deep .mat-focused .mat-form-field-label {
   /*change color of label*/

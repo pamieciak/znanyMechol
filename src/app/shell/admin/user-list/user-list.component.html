@@ -1,0 +1,34 @@
+<div class="userList">
+  <h1>Lista użytkowników</h1>
+  <ng-container *ngFor="let user of user$ | async">
+    <div class="userList__data">
+      <p>{{ user.name }}</p>
+      <p>{{ user.email }}</p>
+      <button class="userList__reset" (click)="changePassword(user)">Zresetuj hasło</button>
+    </div>
+  </ng-container>
+</div>
+
+<div *ngIf="openM" class="confirmationModal">
+  <div class="confirmationModal__content">
+    <h1>Czy chcesz zresetować hasło użytkownikowi: {{ (userData | async)!.name }}</h1>
+    <p>Stare hasło: {{ (userData | async)!.password }}</p>
+
+    <div class="confirmationModal__buttons">
+      <button class="deleteBtn" (click)="closeModal()">Anuluj</button>
+      <button class="cancelBtn" (click)="openConfirmation()">Dalej</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="openConf" class="confirmationModal">
+  <div class="confirmationModal__content">
+    <h1>Podaj hasło admina, aby zresetować hasło</h1>
+    <input type="password" [formControl]="adminPass" />
+
+    <div class="confirmationModal__buttons">
+      <button class="deleteBtn" (click)="closeReset()">Anuluj</button>
+      <button class="cancelBtn" (click)="chceckRole(this.adminPass.value)">Zresetuj hasło</button>
+    </div>
+  </div>
+</div>
