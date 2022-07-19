@@ -7,8 +7,8 @@
       <div class="specialistInfo__data">
         <p>{{ specialist.first_name }} {{ specialist.last_name }}</p>
 
-        {{ specialist.specialization }} <br />
-        {{ specialist.rating }}/5
+        {{ specialist.specialization | touppercase }} <br />
+        {{ specialist.rating | rating }}/5
       </div>
       <div class="specialistInfo__adress">
         <p>

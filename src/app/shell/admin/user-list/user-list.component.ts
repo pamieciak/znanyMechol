@@ -38,12 +38,15 @@ export class UserListComponent {
   }
 
   public chceckRole(adminPass: string) {
-    this.userService.getUserRole(this.role, adminPass);
+    if (this.role === 'admin') {
+      this.userService.getUserRole(this.role, adminPass);
+    }
 
     this.userService.isPasswordMatch.pipe(take(1)).subscribe(isTrue => {
       if (isTrue) {
         this.toastr.success('Hasło zresetowane', 'Sukces!');
         this.isOpenConfimationModal = false;
+        this.adminPass.setValue('');
         this.cdr.markForCheck();
       } else {
         this.toastr.error('Niepoprawne hasło admina', 'Błąd!');

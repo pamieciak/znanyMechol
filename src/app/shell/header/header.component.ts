@@ -36,7 +36,7 @@ export class HeaderComponent {
       this.router.navigate(['/admin-dashboard']);
     } else {
       this.router.navigate(['/home']);
-      this.specialistService.sendValue('');
+      this.communicateService.sendValue('');
       this.specialistService.getSpecialistList();
     }
   }

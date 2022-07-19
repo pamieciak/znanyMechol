@@ -1,9 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { isAdminActions } from './is-admin.actions';
+import { UserState } from './is-admin.state';
 
-import { isAdminState } from './is-admin.state';
-
-const initialAdminState: isAdminState = {
+const initialAdminState: UserState = {
   isAdmin: false,
 };
 

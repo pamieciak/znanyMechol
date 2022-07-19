@@ -28,17 +28,15 @@ export class UsersService {
   }
 
   public getUserList() {
-    return this.http.get<User[]>(this.API_USER_URL).subscribe(users => {
-      const onlyUserList = users.filter(user => {
-        return user.role === 'user';
-      });
-      this.userList.next(onlyUserList);
+    return this.http.get<User[]>(`${this.API_USER_URL}?role_like=user`).subscribe(users => {
+      console.log(users);
+      this.userList.next(users);
     });
   }
 
   public getUserRole(role: string, pass: string) {
-    return this.http.get<User[]>(`${this.API_USER_URL}?q=${role}`).subscribe(admin => {
-      if (admin[0].password === pass) {
+    return this.http.get<User[]>(`${this.API_USER_URL}?role_like=${role}&password_like=${pass}`).subscribe(admin => {
+      if (admin.length !== 0) {
         this.isPasswordMatch.next(true);
       } else {
         this.isPasswordMatch.next(false);

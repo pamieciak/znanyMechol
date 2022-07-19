@@ -1,3 +1,3 @@
-export interface isAdminState {
+export interface UserState {
   isAdmin: boolean;
 }
