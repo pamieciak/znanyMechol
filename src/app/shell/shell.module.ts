@@ -39,20 +39,6 @@ import { UserListComponent } from './admin/user-list/user-list.component';
 import { RatingPipe } from './specialist-view/pipes/rating.pipe';
 import { TouppercasePipe } from './specialist-view/pipes/touppercase.pipe';
 
-// import { Observable, tap, delay } from 'rxjs';
-// import { Specialist } from './specialist-view/specialist.intefrace';
-// import { ApiService } from './specialist-view/api.service';
-
-// @Injectable({
-//   providedIn: 'root',
-// })
-// export class ExcampleResolver implements Resolve<Observable<Specialist[]>> {
-//   constructor(private apiService: ApiService) {}
-//   public resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Specialist[]> {
-//     return this.apiService.searchAll$.pipe(delay(2000), tap(console.log));
-//   }
-// }
-
 @NgModule({
   declarations: [
     ShellComponent,

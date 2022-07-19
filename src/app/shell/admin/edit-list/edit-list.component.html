@@ -27,7 +27,7 @@
   </ng-container>
 </div>
 
-<div *ngIf="openM" class="confirmationModal">
+<div *ngIf="isOpenModal" class="confirmationModal">
   <div class="confirmationModal__content">
     <h1>Czy na pewno chcesz usunąć specjalistę?</h1>
     <p>{{ name }} {{ surname }}</p>
@@ -38,7 +38,7 @@
   </div>
 </div>
 
-<div *ngIf="openEdit" class="editModal">
+<div *ngIf="isEditModalOpen" class="editModal">
   <div class="editModal__content">
     <ng-container *ngIf="!editing">
       <h1>Edytuj dane specjalisty</h1>

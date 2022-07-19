@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CommunicateService } from '@shared/services/communicate.service';
+import { SpecialistsService } from '@shared/services/specialists.service';
 import { Observable, switchMap } from 'rxjs';
-import { ApiService } from '../../shared/services/api.service';
-import { Specialist } from '../specialist-view/specialist.intefrace';
+import { Specialist } from '../../shell/specialist-view/specialist.intefrace';
 
 @Component({
   selector: 'app-specialist-details',
@@ -18,12 +19,17 @@ export class SpecialistDetailsComponent implements OnInit {
 
   private readonly API_URL = 'http://localhost:3000/specialists';
 
-  constructor(private apiService: ApiService, private routes: ActivatedRoute, private http: HttpClient) {}
+  constructor(
+    private specialistService: SpecialistsService,
+    private communicateService: CommunicateService,
+    private routes: ActivatedRoute,
+    private http: HttpClient
+  ) {}
 
   public ngOnInit(): void {
     this.id = this.routes.snapshot.paramMap.get('id')?.split('-').pop();
-    this.apiService.sendValue(this.id);
-    this.specDetails$ = this.apiService.shareValue$.pipe(
+    this.communicateService.sendValue(this.id);
+    this.specDetails$ = this.specialistService.shareValue$.pipe(
       switchMap(res => {
         return this.http.get<Specialist[]>(`${this.API_URL}?q=${res}`);
       })

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '@shared/services/api.service';
+import { SpecialistsService } from '@shared/services/specialists.service';
 import { ClickEvent } from 'angular-star-rating';
 import { Specialist } from 'app/shell/specialist-view/specialist.intefrace';
 
@@ -14,7 +14,7 @@ export class AddSpecialistComponent {
   @Output() public closeForm = new EventEmitter<boolean>();
 
   public onClickResult!: ClickEvent;
-  public stars!: number;
+  public starsRating!: number;
 
   public form = new FormGroup({
     first_name: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern(/^[A-Z].*$/)]),
@@ -30,7 +30,7 @@ export class AddSpecialistComponent {
     { value: 'zawieszenie', viewValue: 'Zawieszenie' },
   ];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private specialistService: SpecialistsService) {}
 
   public addSpecialist() {
     const specialistData: Specialist = {
@@ -39,18 +39,18 @@ export class AddSpecialistComponent {
       specialization: this.form.controls['selectedValue'].value.toLowerCase(),
       address: this.form.controls['address'].value,
       email: '',
-      rating: this.stars,
+      rating: this.starsRating,
       id: 0,
     };
 
     console.log(this.form.value);
     this.closeForm.emit(false);
 
-    this.apiService.postSpecialist(specialistData);
+    this.specialistService.postSpecialist(specialistData);
   }
 
   public onClick = ($event: ClickEvent) => {
-    this.stars = $event.rating;
+    this.starsRating = $event.rating;
     this.onClickResult = $event;
   };
 }

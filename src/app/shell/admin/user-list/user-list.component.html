@@ -9,7 +9,7 @@
   </ng-container>
 </div>
 
-<div *ngIf="openM" class="confirmationModal">
+<div *ngIf="isOpenModal" class="confirmationModal">
   <div class="confirmationModal__content">
     <h1>Czy chcesz zresetować hasło użytkownikowi: {{ (userData | async)!.name }}</h1>
     <p>Stare hasło: {{ (userData | async)!.password }}</p>
@@ -21,7 +21,7 @@
   </div>
 </div>
 
-<div *ngIf="openConf" class="confirmationModal">
+<div *ngIf="isOpenConfimationModal" class="confirmationModal">
   <div class="confirmationModal__content">
     <h1>Podaj hasło admina, aby zresetować hasło</h1>
     <input type="password" [formControl]="adminPass" />

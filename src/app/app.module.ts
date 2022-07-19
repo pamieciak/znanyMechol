@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbStatusService } from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
 import { MatDialogModule } from '@angular/material/dialog';
-import { LoaderDialogComponent } from './shared/components/loader-dialog/loader-dialog.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -17,11 +16,11 @@ import { StarRatingModule } from 'angular-star-rating';
 import { MatSelectModule } from '@angular/material/select';
 import { AppState } from './store/app.state';
 import { authReducer } from './store/auth';
-import { isAdminRecucer } from './store/isAdmin/isAdmin.reducer';
+import { isAdminRecucer } from './store/is-admin/is-admin.reducer';
 
 @NgModule({
-  declarations: [AppComponent, LoaderDialogComponent],
-  entryComponents: [LoaderDialogComponent],
+  declarations: [AppComponent],
+  entryComponents: [],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -1,29 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Params, Router } from '@angular/router';
-import { User } from 'app/auth/user.interface';
-import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
-import { Specialist } from '../../shell/specialist-view/specialist.intefrace';
+import { Specialist } from 'app/shell/specialist-view/specialist.intefrace';
+import { BehaviorSubject, Observable, ReplaySubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ApiService {
-  public isPasswordMatch = new Subject<boolean>();
-
+export class SpecialistsService {
   private readonly API_URL = 'http://localhost:3000/specialists';
 
-  private readonly API_USER_URL = 'http://localhost:3000/users';
-
   private readonly specialistList = new BehaviorSubject<Specialist[]>([]);
-
-  private readonly userList = new BehaviorSubject<User[]>([]);
 
   private readonly searchValue = new ReplaySubject<string>(1);
 
   constructor(private http: HttpClient, private router: Router) {
     this.getSpecialistList();
-    this.getUserList();
   }
 
   public get shareValue$() {
@@ -32,10 +24,6 @@ export class ApiService {
 
   public get searchAll$() {
     return this.specialistList.asObservable();
-  }
-
-  public get userAll$() {
-    return this.userList.asObservable();
   }
 
   public getSpecialistList(value?: string | null | Observable<string>) {
@@ -74,25 +62,6 @@ export class ApiService {
         return specialist.id != id;
       });
       this.specialistList.next(newList);
-    });
-  }
-
-  public getUserList() {
-    return this.http.get<User[]>(this.API_USER_URL).subscribe(users => {
-      const onlyUserList = users.filter(user => {
-        return user.role === 'user';
-      });
-      this.userList.next(onlyUserList);
-    });
-  }
-
-  public getUserRole(role: string, pass: string) {
-    return this.http.get<User[]>(`${this.API_USER_URL}?q=${role}`).subscribe(admin => {
-      if (admin[0].password === pass) {
-        this.isPasswordMatch.next(true);
-      } else {
-        this.isPasswordMatch.next(false);
-      }
     });
   }
 

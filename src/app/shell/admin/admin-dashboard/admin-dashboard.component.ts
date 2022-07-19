@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
-import { ApiService } from '@shared/services/api.service';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { SpecialistsService } from '@shared/services/specialists.service';
 import { AuthService } from 'app/auth/auth.service';
 
 import { ToastrService } from 'ngx-toastr';
@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./admin-dashboard.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdminDashboardComponent implements OnInit {
+export class AdminDashboardComponent {
   public openForm = false;
   public openList = false;
   public spinner = false;
@@ -21,11 +21,9 @@ export class AdminDashboardComponent implements OnInit {
   constructor(
     private cdf: ChangeDetectorRef,
     private toastr: ToastrService,
-    private apiService: ApiService,
-    private auth: AuthService
+    private auth: AuthService,
+    private specialistService: SpecialistsService
   ) {}
-
-  ngOnInit(): void {}
 
   public showAddingForm() {
     if (this.openList || this.openUserList) {
@@ -41,7 +39,7 @@ export class AdminDashboardComponent implements OnInit {
       this.openUserList = false;
     }
     this.openList = !this.openList;
-    this.apiService.getSpecialistList();
+    this.specialistService.getSpecialistList();
   }
 
   public openUsers() {

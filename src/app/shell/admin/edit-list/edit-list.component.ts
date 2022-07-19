@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '@shared/services/api.service';
+import { SpecialistsService } from '@shared/services/specialists.service';
 
 import { Specialist } from 'app/shell/specialist-view/specialist.intefrace';
 
@@ -14,8 +14,8 @@ import { ReplaySubject, take, tap } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditListComponent {
-  public openM = false;
-  public openEdit = false;
+  public isOpenModal = false;
+  public isEditModalOpen = false;
   public name!: string;
   public surname!: string;
   public id!: number | undefined;
@@ -25,7 +25,7 @@ export class EditListComponent {
 
   public specArray = new ReplaySubject<Specialist>(1);
 
-  public adminlist$ = this.apiService.searchAll$;
+  public adminlist$ = this.specialistService.searchAll$;
 
   public editForm = new FormGroup({
     first_name: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern(/^[A-Z].*$/)]),
@@ -35,8 +35,12 @@ export class EditListComponent {
     rating: new FormControl(this.rating),
   });
 
-  constructor(private apiService: ApiService, private toastr: ToastrService, public cdr: ChangeDetectorRef) {
-    this.apiService.getSpecialistList();
+  constructor(
+    private toastr: ToastrService,
+    public cdr: ChangeDetectorRef,
+    private specialistService: SpecialistsService
+  ) {
+    this.specialistService.getSpecialistList();
   }
 
   public get specialista$() {
@@ -44,9 +48,9 @@ export class EditListComponent {
   }
 
   public deleteSpecialist() {
-    this.apiService.deleteSpecialist(this.id);
-    this.apiService.getSpecialistList();
-    this.openM = false;
+    this.specialistService.deleteSpecialist(this.id);
+    this.specialistService.getSpecialistList();
+    this.isOpenModal = false;
     this.deleting = true;
 
     setTimeout(() => {
@@ -60,17 +64,17 @@ export class EditListComponent {
     this.name = name;
     this.surname = surname;
     this.id = id;
-    this.openM = !this.openM;
+    this.isOpenModal = !this.isOpenModal;
   }
 
   public closeModal() {
-    if (this.openM) {
-      this.openM = false;
+    if (this.isOpenModal) {
+      this.isOpenModal = false;
     }
   }
 
   public openEditor(specialist: Specialist) {
-    this.openEdit = !this.openEdit;
+    this.isEditModalOpen = !this.isEditModalOpen;
     this.editForm.controls['first_name'].setValue(specialist.first_name);
     this.editForm.controls['last_name'].setValue(specialist.last_name);
     this.editForm.controls['specialization'].setValue(specialist.specialization);
@@ -92,15 +96,15 @@ export class EditListComponent {
       id: this.id,
     };
 
-    this.apiService.editSpecialist(specialistData);
-    this.apiService.getSpecialistList();
+    this.specialistService.editSpecialist(specialistData);
+    this.specialistService.getSpecialistList();
     this.editing = true;
 
     setTimeout(() => {
       this.editing = false;
       this.cdr.markForCheck();
-      if (this.openEdit) {
-        this.openEdit = false;
+      if (this.isEditModalOpen) {
+        this.isEditModalOpen = false;
       }
     }, 1000);
 
@@ -130,8 +134,8 @@ export class EditListComponent {
   }
 
   public closeEdit() {
-    if (this.openEdit) {
-      this.openEdit = false;
+    if (this.isEditModalOpen) {
+      this.isEditModalOpen = false;
     }
   }
 }

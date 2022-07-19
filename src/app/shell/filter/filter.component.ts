@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '@shared/services/api.service';
+import { CommunicateService } from '@shared/services/communicate.service';
+import { SpecialistsService } from '@shared/services/specialists.service';
 
 @Component({
   selector: 'app-filter',
@@ -9,26 +10,31 @@ import { ApiService } from '@shared/services/api.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterComponent implements OnInit {
-  public inputValue$ = this.specialistApi.shareValue$;
+  public inputValue$ = this.communicateService.shareValue$;
 
-  constructor(private specialistApi: ApiService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private specialistService: SpecialistsService,
+    private communicateService: CommunicateService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   public ngOnInit() {
     if (this.route.snapshot.queryParams['q']) {
-      this.specialistApi.getSpecialistList(this.route.snapshot.queryParams['q']);
-      this.specialistApi.sendValue(this.route.snapshot.queryParams['q']);
+      this.specialistService.getSpecialistList(this.route.snapshot.queryParams['q']);
+      this.communicateService.sendValue(this.route.snapshot.queryParams['q']);
     }
   }
 
   public showSpecByJob(value: string) {
-    this.specialistApi.getSpecialistList(value);
-    this.specialistApi.sendValue(value);
-    this.specialistApi.queryService(value);
+    this.specialistService.getSpecialistList(value);
+    this.communicateService.sendValue(value);
+    this.communicateService.queryService(value);
   }
 
   public clearFilter() {
-    this.specialistApi.getSpecialistList();
-    this.specialistApi.sendValue('');
+    this.specialistService.getSpecialistList();
+    this.communicateService.sendValue('');
     this.router.navigate(['home']);
   }
 }

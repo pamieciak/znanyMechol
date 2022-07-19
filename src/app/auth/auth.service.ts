@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { authActions } from 'app/store/auth';
-import { isAdminActions } from 'app/store/isAdmin/isAdmin.actions';
+import { isAdminActions } from 'app/store/is-admin/is-admin.actions';
+
 import { ToastrService } from 'ngx-toastr';
 import { map, ReplaySubject, tap } from 'rxjs';
 import { User } from './user.interface';
@@ -33,7 +34,6 @@ export class AuthService {
     return this.authApi.get<User[]>(`${this.API_URL}?email=${email}&password=${password}`).pipe(
       map(users => {
         const hasUsers = users.length !== 0;
-        //sideEffect
         if (hasUsers) {
           this.user.next(users[0]);
           localStorage.setItem('user', JSON.stringify(users[0]));

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { ApiService } from '@shared/services/api.service';
+import { UsersService } from '@shared/services/users.service';
 import { User } from 'app/auth/user.interface';
 
 import { ToastrService } from 'ngx-toastr';
@@ -13,39 +13,38 @@ import { ReplaySubject, take } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserListComponent {
-  public openM = false;
-  public openConf = false;
+  public isOpenModal = false;
+  public isOpenConfimationModal = false;
 
   public loggedUser = JSON.parse(String(localStorage.getItem('user')));
   public role = this.loggedUser['role'];
 
   public userData = new ReplaySubject<User>(1);
 
-  public user$ = this.apiService.userAll$;
+  public user$ = this.userService.userAll$;
 
   public adminPass = new FormControl('');
 
-  constructor(private apiService: ApiService, private toastr: ToastrService, private cdr: ChangeDetectorRef) {}
+  constructor(private userService: UsersService, private toastr: ToastrService, private cdr: ChangeDetectorRef) {}
 
   public changePassword(user: User) {
     this.userData.next(user);
-    this.openM = !this.openM;
+    this.isOpenModal = !this.isOpenModal;
   }
 
   public openConfirmation() {
-    this.openM = !this.openM;
-    this.openConf = !this.openConf;
+    this.isOpenModal = !this.isOpenModal;
+    this.isOpenConfimationModal = !this.isOpenConfimationModal;
   }
 
   public chceckRole(adminPass: string) {
-    this.apiService.getUserRole(this.role, adminPass);
+    this.userService.getUserRole(this.role, adminPass);
 
-    this.apiService.isPasswordMatch.pipe(take(1)).subscribe(isTrue => {
+    this.userService.isPasswordMatch.pipe(take(1)).subscribe(isTrue => {
       if (isTrue) {
         this.toastr.success('Hasło zresetowane', 'Sukces!');
-        this.openConf = false;
+        this.isOpenConfimationModal = false;
         this.cdr.markForCheck();
-        //ZAPYTAĆ O TO!
       } else {
         this.toastr.error('Niepoprawne hasło admina', 'Błąd!');
       }
@@ -53,10 +52,10 @@ export class UserListComponent {
   }
 
   public closeModal() {
-    if (this.openM) this.openM = false;
+    if (this.isOpenModal) this.isOpenModal = false;
   }
 
   public closeReset() {
-    if (this.openConf) this.openConf = false;
+    if (this.isOpenConfimationModal) this.isOpenConfimationModal = false;
   }
 }

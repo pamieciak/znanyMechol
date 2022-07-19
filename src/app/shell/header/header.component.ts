@@ -2,7 +2,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { ApiService } from '@shared/services/api.service';
+import { CommunicateService } from '@shared/services/communicate.service';
+import { SpecialistsService } from '@shared/services/specialists.service';
 import { AuthService } from 'app/auth/auth.service';
 import { AppState } from 'app/store/app.state';
 
@@ -13,7 +14,7 @@ import { AppState } from 'app/store/app.state';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {
-  public openM = false;
+  public isOpenModal = false;
   public isLogedIn$ = this.store.select(state => state.auth.isAuth);
 
   public user$ = this.auth.user$;
@@ -24,7 +25,8 @@ export class HeaderComponent {
 
   constructor(
     private auth: AuthService,
-    private specialistApi: ApiService,
+    private specialistService: SpecialistsService,
+    private communicateService: CommunicateService,
     private router: Router,
     private store: Store<AppState>
   ) {}
@@ -34,34 +36,34 @@ export class HeaderComponent {
       this.router.navigate(['/admin-dashboard']);
     } else {
       this.router.navigate(['/home']);
-      this.specialistApi.sendValue('');
-      this.specialistApi.getSpecialistList();
+      this.specialistService.sendValue('');
+      this.specialistService.getSpecialistList();
     }
   }
 
   public searchValue() {
     if (this.search.value === '') {
-      this.specialistApi.getSpecialistList();
+      this.specialistService.getSpecialistList();
     } else {
-      this.specialistApi.getSpecialistList(this.search.value.toLowerCase());
-      this.specialistApi.sendValue(this.search.value);
-      this.specialistApi.queryService(this.search.value);
+      this.specialistService.getSpecialistList(this.search.value.toLowerCase());
+      this.communicateService.sendValue(this.search.value);
+      this.communicateService.queryService(this.search.value);
     }
   }
 
   public openModal() {
-    this.openM = !this.openM;
+    this.isOpenModal = !this.isOpenModal;
   }
 
   public closeModal() {
-    if (this.openM) {
-      this.openM = false;
+    if (this.isOpenModal) {
+      this.isOpenModal = false;
     }
   }
   public logout() {
     localStorage.removeItem('user');
     this.router.navigate(['/home']);
     this.auth.logOut();
-    this.openM = false;
+    this.isOpenModal = false;
   }
 }

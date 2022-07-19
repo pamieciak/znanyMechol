@@ -26,7 +26,7 @@
   </div>
 </div>
 
-<div *ngIf="openM" class="confirmationModal">
+<div *ngIf="isOpenModal" class="confirmationModal">
   <div class="confirmationModal__content">
     <h1>{{ (user$ | async)?.name }},</h1>
     <h2>Czy na pewno chcesz się wylogować?</h2>
