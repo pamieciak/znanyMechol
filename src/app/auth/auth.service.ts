@@ -49,7 +49,7 @@ export class AuthService {
       tap(isLogIn => {
         if (isLogIn) {
           this.toastr.success('Logowanie prawidłowe', 'Sukces!');
-          this.store.dispatch(authActions.isLogedInTrue());
+          this.store.dispatch(authActions.isLogedInTrue({ age: 20, value: 'Rafał' }));
           this.router.navigate(['/admin-dashboard']);
         } else {
           this.toastr.error('Logowanie nieprawidłowe', 'Uwaga!');
@@ -75,8 +75,7 @@ export class AuthService {
       } else {
         this.store.dispatch(isAdminActions.isThisAdmin());
       }
-      // this.isLogedIn.next(true);
-      this.store.dispatch(authActions.isLogedInTrue());
+      this.store.dispatch(authActions.isLogedInTrue({ age: 20, value: 'Rafał' }));
     }
   }
 }

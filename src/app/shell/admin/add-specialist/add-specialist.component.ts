@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '@shared/services/api.service';
 import { ClickEvent } from 'angular-star-rating';
-import { ApiService } from 'app/shell/specialist-view/api.service';
 import { Specialist } from 'app/shell/specialist-view/specialist.intefrace';
 
 @Component({
@@ -10,7 +10,7 @@ import { Specialist } from 'app/shell/specialist-view/specialist.intefrace';
   styleUrls: ['./add-specialist.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AddSpecialistComponent implements OnInit {
+export class AddSpecialistComponent {
   @Output() public closeForm = new EventEmitter<boolean>();
 
   public onClickResult!: ClickEvent;
@@ -32,12 +32,10 @@ export class AddSpecialistComponent implements OnInit {
 
   constructor(private apiService: ApiService) {}
 
-  ngOnInit(): void {}
-
   public addSpecialist() {
     const specialistData: Specialist = {
-      first_name: this.form.controls['first_name'].value,
-      last_name: this.form.controls['last_name'].value,
+      first_name: this.form.controls['first_name'].value.trim(),
+      last_name: this.form.controls['last_name'].value.trim(),
       specialization: this.form.controls['selectedValue'].value.toLowerCase(),
       address: this.form.controls['address'].value,
       email: '',

@@ -7,18 +7,14 @@
   margin: 2rem auto;
   width: 50%;
   height: 100px;
-  // border: 3px solid rgb(89, 89, 89);
   background-color: rgba(65, 180, 225, 1 );
-  // background: rgba(58, 58, 58, 0.6);
   box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.907);
   border-radius: 5px;
 
 
   h1 {
-    // padding: 1rem;
     color: white;
     margin: 0;
-
   }
 
   &__buttons {
@@ -28,8 +24,6 @@
       font-size: 1.6rem;
       border-radius: 8px;
       border: 1px solid grey;
-      // border: 1px solid black;
-
       transition: all 0.3s;
       cursor: pointer;
     }
@@ -58,7 +52,7 @@
   font-size: 1.4rem;
   color: white;
   border: 2px solid Black;
-  // border-radius: 5px;
+  border-radius: 5px;
 
   span {
     color: rgb(65, 180, 225);

@@ -1,7 +1,8 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { ApiService } from '@shared/services/api.service';
 import { User } from 'app/auth/user.interface';
-import { ApiService } from 'app/shell/specialist-view/api.service';
+
 import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject, take } from 'rxjs';
 

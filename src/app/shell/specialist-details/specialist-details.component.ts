@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, switchMap } from 'rxjs';
-import { ApiService } from '../specialist-view/api.service';
+import { ApiService } from '../../shared/services/api.service';
 import { Specialist } from '../specialist-view/specialist.intefrace';
 
 @Component({

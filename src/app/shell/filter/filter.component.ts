@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ApiService } from '../specialist-view/api.service';
+import { ApiService } from '@shared/services/api.service';
 
 @Component({
   selector: 'app-filter',

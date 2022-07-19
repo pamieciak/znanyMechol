@@ -5,13 +5,13 @@ import { HeaderComponent } from './header/header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { SpecialistViewComponent } from './specialist-view/specialist-view.component';
-import { RatingPipe } from './specialist-view/rating.pipe';
+
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FilterComponent } from './filter/filter.component';
-import { TouppercasePipe } from './specialist-view/touppercase.pipe';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   NbThemeModule,
@@ -36,6 +36,8 @@ import { StarRatingModule } from 'angular-star-rating';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { MatSelectModule } from '@angular/material/select';
 import { UserListComponent } from './admin/user-list/user-list.component';
+import { RatingPipe } from './specialist-view/pipes/rating.pipe';
+import { TouppercasePipe } from './specialist-view/pipes/touppercase.pipe';
 
 // import { Observable, tap, delay } from 'rxjs';
 // import { Specialist } from './specialist-view/specialist.intefrace';

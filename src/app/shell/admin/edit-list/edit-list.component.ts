@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from 'app/shell/specialist-view/api.service';
+import { ApiService } from '@shared/services/api.service';
+
 import { Specialist } from 'app/shell/specialist-view/specialist.intefrace';
 
 import { ToastrService } from 'ngx-toastr';
@@ -34,7 +35,9 @@ export class EditListComponent {
     rating: new FormControl(this.rating),
   });
 
-  constructor(private apiService: ApiService, private toastr: ToastrService, public cdr: ChangeDetectorRef) {}
+  constructor(private apiService: ApiService, private toastr: ToastrService, public cdr: ChangeDetectorRef) {
+    this.apiService.getSpecialistList();
+  }
 
   public get specialista$() {
     return this.specArray.asObservable();

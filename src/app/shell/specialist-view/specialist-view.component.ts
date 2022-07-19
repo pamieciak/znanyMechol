@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { ApiService } from './api.service';
+import { ApiService } from '../../shared/services/api.service';
 
 @Component({
   selector: 'app-specialist-view',

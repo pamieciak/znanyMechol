@@ -1,14 +1,7 @@
-import {
-  Component,
-  OnInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  HostListener,
-  ElementRef,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { ApiService } from '@shared/services/api.service';
 import { AuthService } from 'app/auth/auth.service';
-import { ApiService } from 'app/shell/specialist-view/api.service';
+
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -21,7 +14,7 @@ export class AdminDashboardComponent implements OnInit {
   public openForm = false;
   public openList = false;
   public spinner = false;
-  public openUserList = true;
+  public openUserList = false;
 
   public user$ = this.auth.user$;
 

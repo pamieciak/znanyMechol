@@ -12,8 +12,6 @@ export type x = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  // public loader = false;
-
   public auth$ = this.store.select(state => state.auth.isAuth);
   public isAdmin$ = this.store.select(state => state.isAdmin.isAdmin);
   constructor(private store: Store<AppState>) {}

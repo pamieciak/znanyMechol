@@ -8,7 +8,8 @@ const initialState: AuthState = {
 
 export const authReducer = createReducer(
   initialState,
-  on(authActions.isLogedInTrue, state => {
+  on(authActions.isLogedInTrue, (state, payload) => {
+    console.log(payload);
     return {
       ...state,
       isAuth: true,

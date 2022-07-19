@@ -5,7 +5,7 @@
     <form [formGroup]="form" class="addForm__form" (ngSubmit)="addSpecialist()">
       <p>Dane specjalisty:</p>
       <mat-form-field>
-        <input matInput type="text" formControlName="first_name" />
+        <input matInput type="text" formControlName="first_name" maxlength="20" />
         <mat-placeholder class="placeholder">wpisz imię:</mat-placeholder>
         <mat-error *ngIf="form.controls['first_name'].errors?.['required']">imię jest wymagane!</mat-error>
         <mat-error *ngIf="form.controls['first_name'].errors?.['minlength']">za krótkie dane!</mat-error>
@@ -14,7 +14,7 @@
         >
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="text" formControlName="last_name" />
+        <input matInput type="text" formControlName="last_name" maxlength="20" />
         <mat-placeholder class="placeholder">wpisz nazwisko:</mat-placeholder>
         <mat-error *ngIf="form.controls['last_name'].errors?.['required']">imię jest wymagane!</mat-error>
         <mat-error *ngIf="form.controls['last_name'].errors?.['minlength']">za krótkie dane!</mat-error>
@@ -31,7 +31,7 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="text" formControlName="address" />
+        <input matInput type="text" formControlName="address" maxlength="40" />
         <mat-placeholder class="placeholder">wpisz adres:</mat-placeholder>
         <mat-error *ngIf="form.controls['address'].errors?.['required']">imię jest wymagane!</mat-error>
         <mat-error *ngIf="form.controls['address'].errors?.['minlength']">za krótkie dane!</mat-error>

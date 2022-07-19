@@ -2,10 +2,9 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { ApiService } from '@shared/services/api.service';
 import { AuthService } from 'app/auth/auth.service';
 import { AppState } from 'app/store/app.state';
-
-import { ApiService } from '../specialist-view/api.service';
 
 @Component({
   selector: 'app-header',

@@ -2,9 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Params, Router } from '@angular/router';
 import { User } from 'app/auth/user.interface';
-import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable, ReplaySubject, Subject } from 'rxjs';
-import { Specialist } from './specialist.intefrace';
+import { Specialist } from '../../shell/specialist-view/specialist.intefrace';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +12,7 @@ export class ApiService {
   public isPasswordMatch = new Subject<boolean>();
 
   private readonly API_URL = 'http://localhost:3000/specialists';
+
   private readonly API_USER_URL = 'http://localhost:3000/users';
 
   private readonly specialistList = new BehaviorSubject<Specialist[]>([]);
@@ -21,10 +21,11 @@ export class ApiService {
 
   private readonly searchValue = new ReplaySubject<string>(1);
 
-  constructor(private http: HttpClient, private router: Router, private toastr: ToastrService) {
+  constructor(private http: HttpClient, private router: Router) {
     this.getSpecialistList();
     this.getUserList();
   }
+
   public get shareValue$() {
     return this.searchValue.asObservable();
   }
@@ -35,6 +36,18 @@ export class ApiService {
 
   public get userAll$() {
     return this.userList.asObservable();
+  }
+
+  public getSpecialistList(value?: string | null | Observable<string>) {
+    if (value) {
+      return this.http.get<Specialist[]>(`${this.API_URL}?q=${value}`).subscribe(search => {
+        this.specialistList.next(search);
+      });
+    } else {
+      return this.http.get<Specialist[]>(this.API_URL).subscribe(specialists => {
+        this.specialistList.next(specialists);
+      });
+    }
   }
 
   public postSpecialist(data: Specialist) {
@@ -62,18 +75,6 @@ export class ApiService {
       });
       this.specialistList.next(newList);
     });
-  }
-
-  public getSpecialistList(value?: string | null | Observable<string>) {
-    if (value) {
-      return this.http.get<Specialist[]>(`${this.API_URL}?q=${value}`).subscribe(search => {
-        this.specialistList.next(search);
-      });
-    } else {
-      return this.http.get<Specialist[]>(this.API_URL).subscribe(specialists => {
-        this.specialistList.next(specialists);
-      });
-    }
   }
 
   public getUserList() {
