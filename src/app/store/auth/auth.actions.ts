@@ -1,6 +1,6 @@
-import { createAction, props } from '@ngrx/store';
+import { createAction } from '@ngrx/store';
 
 export const authActions = {
-  isLogedInTrue: createAction('[Auth], True LogedIn', props<{ value: string; age: number }>()),
+  isLogedInTrue: createAction('[Auth], True LogedIn'),
   isLogedInFalse: createAction('[Auth], False LogedIn'),
 };

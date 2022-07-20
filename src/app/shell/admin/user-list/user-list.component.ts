@@ -4,9 +4,9 @@ import { Store } from '@ngrx/store';
 import { UsersService } from '@shared/services/users.service';
 import { User } from 'app/auth/user.interface';
 import { AppState } from 'app/store/app.state';
+import { singleuserActions } from 'app/store/user/user.actions';
 
 import { ToastrService } from 'ngx-toastr';
-import { ReplaySubject, take } from 'rxjs';
 
 @Component({
   selector: 'app-user-list',
@@ -21,7 +21,7 @@ export class UserListComponent {
   public loggedUser = JSON.parse(String(localStorage.getItem('user')));
   public role = this.loggedUser['role'];
 
-  public userData = new ReplaySubject<User>(1);
+  public userData = this.store.select(state => state.singleuser.singleuser);
 
   public user$ = this.store.select(state => state.users.users);
 
@@ -35,7 +35,7 @@ export class UserListComponent {
   ) {}
 
   public changePassword(user: User) {
-    this.userData.next(user);
+    this.store.dispatch(singleuserActions.userData({ user }));
     this.isOpenModal = !this.isOpenModal;
   }
 
@@ -44,12 +44,8 @@ export class UserListComponent {
     this.isOpenConfimationModal = !this.isOpenConfimationModal;
   }
 
-  public chceckRole(adminPass: string) {
-    if (this.role === 'admin') {
-      this.userService.getUserRole(this.role, adminPass);
-    }
-
-    this.userService.isPasswordMatch.pipe(take(1)).subscribe(isTrue => {
+  public chceckPassword(adminPass: string) {
+    this.userService.getUserRole(adminPass).subscribe(isTrue => {
       if (isTrue) {
         this.toastr.success('Hasło zresetowane', 'Sukces!');
         this.isOpenConfimationModal = false;

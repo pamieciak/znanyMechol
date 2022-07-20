@@ -1,7 +1,9 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { CommunicateService } from '@shared/services/communicate.service';
 import { SpecialistsService } from '@shared/services/specialists.service';
+import { AppState } from 'app/store/app.state';
 
 @Component({
   selector: 'app-filter',
@@ -10,13 +12,14 @@ import { SpecialistsService } from '@shared/services/specialists.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FilterComponent implements OnInit {
-  public inputValue$ = this.communicateService.shareValue$;
+  public inputValue$ = this.store.select(state => state.search.search);
 
   constructor(
     private specialistService: SpecialistsService,
     private communicateService: CommunicateService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ) {}
 
   public ngOnInit() {

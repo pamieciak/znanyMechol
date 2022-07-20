@@ -2,8 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { AppState } from 'app/store/app.state';
 import { authActions } from 'app/store/auth';
 import { isAdminActions } from 'app/store/is-admin/is-admin.actions';
+import { singleuserActions } from 'app/store/user/user.actions';
 
 import { ToastrService } from 'ngx-toastr';
 import { map, ReplaySubject, tap } from 'rxjs';
@@ -21,13 +23,13 @@ export class AuthService {
     private authApi: HttpClient,
     private router: Router,
     private toastr: ToastrService,
-    private store: Store
+    private store: Store<AppState>
   ) {
     this.isAutorised();
   }
 
   public get user$() {
-    return this.user.asObservable();
+    return this.store.select(state => state.singleuser.singleuser);
   }
 
   public logIn(email: string, password: string) {
@@ -35,7 +37,7 @@ export class AuthService {
       map(users => {
         const hasUsers = users.length !== 0;
         if (hasUsers) {
-          this.user.next(users[0]);
+          this.store.dispatch(singleuserActions.userData({ user: users[0] }));
           localStorage.setItem('user', JSON.stringify(users[0]));
 
           if (users[0].role !== 'admin') {
@@ -49,7 +51,7 @@ export class AuthService {
       tap(isLogIn => {
         if (isLogIn) {
           this.toastr.success('Logowanie prawidłowe', 'Sukces!');
-          this.store.dispatch(authActions.isLogedInTrue({ age: 20, value: 'Rafał' }));
+          this.store.dispatch(authActions.isLogedInTrue());
           this.router.navigate(['/admin-dashboard']);
         } else {
           this.toastr.error('Logowanie nieprawidłowe', 'Uwaga!');
@@ -75,7 +77,7 @@ export class AuthService {
       } else {
         this.store.dispatch(isAdminActions.isThisAdmin());
       }
-      this.store.dispatch(authActions.isLogedInTrue({ age: 20, value: 'Rafał' }));
+      this.store.dispatch(authActions.isLogedInTrue());
     }
   }
 }

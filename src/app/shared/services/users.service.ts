@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { User } from 'app/auth/user.interface';
 import { AppState } from 'app/store/app.state';
 import { setUserListActions } from 'app/store/user-list/user-list.actions';
-import { ReplaySubject, Subject } from 'rxjs';
+import { map, Subject, switchMap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,14 +14,8 @@ export class UsersService {
 
   private readonly API_USER_URL = 'http://localhost:3000/users';
 
-  private readonly searchValue = new ReplaySubject<string>(1);
-
   constructor(private http: HttpClient, private store: Store<AppState>) {
     this.getUserList();
-  }
-
-  public get shareValue$() {
-    return this.searchValue.asObservable();
   }
 
   public getUserList() {
@@ -30,9 +24,14 @@ export class UsersService {
     });
   }
 
-  public getUserRole(role: string, pass: string) {
-    return this.http.get<User[]>(`${this.API_USER_URL}?role_like=${role}&password_like=${pass}`).subscribe(admin => {
-      this.isPasswordMatch.next(admin.length !== 0);
-    });
+  public getUserRole(pass: string) {
+    return this.store
+      .select(state => state.singleuser.singleuser)
+      .pipe(
+        switchMap(user => {
+          return this.http.get<User[]>(`${this.API_USER_URL}?email_like${user?.email}=&password_like=${pass}`);
+        }),
+        map(users => users.length !== 0)
+      );
   }
 }
