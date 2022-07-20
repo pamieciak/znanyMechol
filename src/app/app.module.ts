@@ -17,6 +17,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { AppState } from './store/app.state';
 import { authReducer } from './store/auth';
 import { isAdminRecucer } from './store/is-admin/is-admin.reducer';
+import { setUserListReducer } from './store/user-list/user-list.reducer';
+import { setSpecialistsListReducer } from './store/specialist-list/specialist-list.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +30,8 @@ import { isAdminRecucer } from './store/is-admin/is-admin.reducer';
       {
         auth: authReducer,
         isAdmin: isAdminRecucer,
+        users: setUserListReducer,
+        specialists: setSpecialistsListReducer,
       },
       {}
     ),

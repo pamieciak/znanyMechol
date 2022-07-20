@@ -1,7 +1,9 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { UsersService } from '@shared/services/users.service';
 import { User } from 'app/auth/user.interface';
+import { AppState } from 'app/store/app.state';
 
 import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject, take } from 'rxjs';
@@ -21,11 +23,16 @@ export class UserListComponent {
 
   public userData = new ReplaySubject<User>(1);
 
-  public user$ = this.userService.userAll$;
+  public user$ = this.store.select(state => state.users.users);
 
   public adminPass = new FormControl('');
 
-  constructor(private userService: UsersService, private toastr: ToastrService, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private userService: UsersService,
+    private toastr: ToastrService,
+    private cdr: ChangeDetectorRef,
+    private store: Store<AppState>
+  ) {}
 
   public changePassword(user: User) {
     this.userData.next(user);

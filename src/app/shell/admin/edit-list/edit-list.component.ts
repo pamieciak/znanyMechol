@@ -1,8 +1,10 @@
 import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { SpecialistsService } from '@shared/services/specialists.service';
 
 import { Specialist } from 'app/shell/specialist-view/specialist.intefrace';
+import { AppState } from 'app/store/app.state';
 
 import { ToastrService } from 'ngx-toastr';
 import { ReplaySubject, take, tap } from 'rxjs';
@@ -25,7 +27,7 @@ export class EditListComponent {
 
   public specArray = new ReplaySubject<Specialist>(1);
 
-  public adminlist$ = this.specialistService.searchAll$;
+  public adminlist$ = this.store.select(state => state.specialists.specialists);
 
   public editForm = new FormGroup({
     first_name: new FormControl('', [Validators.required, Validators.minLength(4), Validators.pattern(/^[A-Z].*$/)]),
@@ -38,7 +40,8 @@ export class EditListComponent {
   constructor(
     private toastr: ToastrService,
     public cdr: ChangeDetectorRef,
-    private specialistService: SpecialistsService
+    private specialistService: SpecialistsService,
+    private store: Store<AppState>
   ) {
     this.specialistService.getSpecialistList();
   }
