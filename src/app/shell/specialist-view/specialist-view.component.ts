@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { CommunicateService } from '@shared/services/communicate.service';
 import { AppState } from 'app/store/app.state';
@@ -9,15 +9,11 @@ import { AppState } from 'app/store/app.state';
   styleUrls: ['./specialist-view.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SpecialistViewComponent implements OnInit {
+export class SpecialistViewComponent {
   public specialist$ = this.store.select(state => state.specialists.specialists);
 
   constructor(private communicateService: CommunicateService, private store: Store<AppState>) {
     this.store.select(state => state.specialists.specialists);
     this.communicateService.sendValue('');
-  }
-
-  public ngOnInit() {
-    return;
   }
 }

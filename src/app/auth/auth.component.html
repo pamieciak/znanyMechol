@@ -1,4 +1,4 @@
-<div [ngClass]="closeForm ? 'close' : 'login-box'">
+<div [ngClass]="closeLoginForm ? 'close' : 'login-box'">
   <h2>Zaloguj się do serwisu</h2>
   <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
     <mat-form-field>

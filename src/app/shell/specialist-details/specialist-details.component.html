@@ -1,16 +1,16 @@
 <ng-container *ngFor="let specialist of specDetails$ | async">
-  <div class="specBox">
-    <div class="specialistInfo">
-      <div class="specialistInfo__img">
+  <div class="spec-box">
+    <div class="specialist-info">
+      <div class="specialist-info__img">
         <img src="https://via.placeholder.com/150" alt="placeholder_img" />
       </div>
-      <div class="specialistInfo__data">
+      <div class="specialist-info__data">
         <p>{{ specialist.first_name }} {{ specialist.last_name }}</p>
 
         {{ specialist.specialization | touppercase }} <br />
         {{ specialist.rating | rating }}/5
       </div>
-      <div class="specialistInfo__adress">
+      <div class="specialist-info__adress">
         <p>
           Adres: <br />
           {{ specialist.address }}
@@ -18,7 +18,7 @@
         <button>Pokaż cennik</button>
       </div>
     </div>
-    <div class="specialistCalendar">
+    <div class="specialist-calendar">
       <mat-card class="calendar">
         <mat-calendar></mat-calendar>
       </mat-card>

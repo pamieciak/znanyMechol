@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 })
 export class AuthComponent {
   public spinner = false;
-  public closeForm = false;
+  public closeLoginForm = false;
 
   public authForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -22,13 +22,13 @@ export class AuthComponent {
   public onSubmit() {
     if (this.authForm.valid) {
       this.spinner = true;
-      this.closeForm = true;
+      this.closeLoginForm = true;
 
       setTimeout(() => {
         this.authService.logIn(this.authForm.value.email, this.authForm.value.password).subscribe(value => {
           if (value === false) {
             this.spinner = false;
-            this.closeForm = false;
+            this.closeLoginForm = false;
             this.changeDetRef.markForCheck();
           }
         });

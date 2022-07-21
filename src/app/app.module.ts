@@ -20,8 +20,8 @@ import { isAdminRecucer } from './store/is-admin/is-admin.reducer';
 import { setUserListReducer } from './store/user-list/user-list.reducer';
 import { setSpecialistsListReducer } from './store/specialist-list/specialist-list.reducer';
 import { searchReducer } from './store/search/search.reducer';
-import { isPassCorrectReducer } from './store/is-password-correct/password.reducer';
-import { singleUserReducer } from './store/user/user.reducer';
+
+import { appUserReducer } from './store/user/user.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,12 +32,11 @@ import { singleUserReducer } from './store/user/user.reducer';
     StoreModule.forRoot<AppState>(
       {
         auth: authReducer,
-        isAdmin: isAdminRecucer,
+        isAdminLoggedIn: isAdminRecucer,
         users: setUserListReducer,
         specialists: setSpecialistsListReducer,
         search: searchReducer,
-        isPasswordCorrect: isPassCorrectReducer,
-        singleuser: singleUserReducer,
+        appUser: appUserReducer,
       },
       {}
     ),

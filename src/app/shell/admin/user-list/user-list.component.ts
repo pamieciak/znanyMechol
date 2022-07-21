@@ -4,8 +4,7 @@ import { Store } from '@ngrx/store';
 import { UsersService } from '@shared/services/users.service';
 import { User } from 'app/auth/user.interface';
 import { AppState } from 'app/store/app.state';
-import { singleuserActions } from 'app/store/user/user.actions';
-
+import { appUserActions } from 'app/store/user/user.actions';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -17,14 +16,8 @@ import { ToastrService } from 'ngx-toastr';
 export class UserListComponent {
   public isOpenModal = false;
   public isOpenConfimationModal = false;
-
-  public loggedUser = JSON.parse(String(localStorage.getItem('user')));
-  public role = this.loggedUser['role'];
-
-  public userData = this.store.select(state => state.singleuser.singleuser);
-
+  public userData = this.store.select(state => state.appUser.appUser);
   public user$ = this.store.select(state => state.users.users);
-
   public adminPass = new FormControl('');
 
   constructor(
@@ -34,19 +27,19 @@ export class UserListComponent {
     private store: Store<AppState>
   ) {}
 
-  public changePassword(user: User) {
-    this.store.dispatch(singleuserActions.userData({ user }));
+  public openChangePasswordModal(user: User) {
+    this.store.dispatch(appUserActions.setUserData({ user }));
     this.isOpenModal = !this.isOpenModal;
   }
 
-  public openConfirmation() {
+  public openConfirmationModal() {
     this.isOpenModal = !this.isOpenModal;
     this.isOpenConfimationModal = !this.isOpenConfimationModal;
   }
 
-  public chceckPassword(adminPass: string) {
-    this.userService.getUserRole(adminPass).subscribe(isTrue => {
-      if (isTrue) {
+  public chceckIfPasswordMatch(adminPass: string) {
+    this.userService.checkUserPass(adminPass).subscribe(ifPassIsMatch => {
+      if (ifPassIsMatch) {
         this.toastr.success('Hasło zresetowane', 'Sukces!');
         this.isOpenConfimationModal = false;
         this.adminPass.setValue('');
@@ -61,7 +54,7 @@ export class UserListComponent {
     if (this.isOpenModal) this.isOpenModal = false;
   }
 
-  public closeReset() {
+  public closeResetMOdal() {
     if (this.isOpenConfimationModal) this.isOpenConfimationModal = false;
   }
 }

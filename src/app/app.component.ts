@@ -12,7 +12,7 @@ export type x = {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent {
-  public auth$ = this.store.select(state => state.auth.isAuth);
-  public isAdmin$ = this.store.select(state => state.isAdmin.isAdmin);
+  public auth$ = this.store.select(state => state.auth.isUserAuthorised);
+  public isAdmin$ = this.store.select(state => state.isAdminLoggedIn.isAdminLoggedIn);
   constructor(private store: Store<AppState>) {}
 }

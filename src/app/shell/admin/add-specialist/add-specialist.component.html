@@ -1,8 +1,8 @@
 <ng-container>
-  <div class="addForm">
+  <div class="add-form">
     <h1>Dodaj specjalistę</h1>
 
-    <form [formGroup]="form" class="addForm__form" (ngSubmit)="addSpecialist()">
+    <form [formGroup]="form" class="add-form__form" (ngSubmit)="addSpecialist()">
       <p>Dane specjalisty:</p>
       <mat-form-field>
         <input matInput type="text" formControlName="first_name" maxlength="20" />

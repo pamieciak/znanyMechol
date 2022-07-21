@@ -46,7 +46,7 @@ export class EditListComponent {
     this.specialistService.getSpecialistList();
   }
 
-  public get specialista$() {
+  public get specialist$() {
     return this.specArray.asObservable();
   }
 
@@ -111,7 +111,7 @@ export class EditListComponent {
       }
     }, 1000);
 
-    this.specialista$
+    this.specialist$
       .pipe(
         take(1),
         tap(res => {

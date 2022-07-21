@@ -15,13 +15,10 @@ import { AppState } from 'app/store/app.state';
 })
 export class HeaderComponent {
   public isOpenModal = false;
-  public isLogedIn$ = this.store.select(state => state.auth.isAuth);
-
+  public isLoggedIn$ = this.store.select(state => state.auth.isUserAuthorised);
   public user$ = this.auth.user$;
-
   public search = new FormControl('');
-
-  public isAdmin$ = this.store.select(state => state.isAdmin.isAdmin);
+  public isAdmin$ = this.store.select(state => state.isAdminLoggedIn.isAdminLoggedIn);
 
   constructor(
     private auth: AuthService,

@@ -16,7 +16,7 @@ export class AdminGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return this.store
-      .select(state => state.isAdmin.isAdmin)
+      .select(state => state.isAdminLoggedIn.isAdminLoggedIn)
       .pipe(
         take(1),
         tap(isAdmin => {

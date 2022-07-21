@@ -1,6 +1,6 @@
 import { createAction } from '@ngrx/store';
 
 export const authActions = {
-  isLogedInTrue: createAction('[Auth], True LogedIn'),
-  isLogedInFalse: createAction('[Auth], False LogedIn'),
+  isUserLoggedIn: createAction('[Auth], check if user is logged in'),
+  isUserLoggedOff: createAction('[Auth], check if user is logged off'),
 };

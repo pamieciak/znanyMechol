@@ -11,11 +11,10 @@ import { ToastrService } from 'ngx-toastr';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminDashboardComponent {
-  public openForm = false;
-  public openList = false;
+  public openAddingForm = false;
+  public openSpecialistList = false;
   public spinner = false;
   public openUserList = false;
-
   public user$ = this.auth.user$;
 
   constructor(
@@ -26,33 +25,33 @@ export class AdminDashboardComponent {
   ) {}
 
   public showAddingForm() {
-    if (this.openList || this.openUserList) {
-      this.openList = false;
+    if (this.openSpecialistList || this.openUserList) {
+      this.openSpecialistList = false;
       this.openUserList = false;
     }
-    this.openForm = !this.openForm;
+    this.openAddingForm = !this.openAddingForm;
   }
 
   public openEditList() {
-    if (this.openForm || this.openUserList) {
-      this.openForm = false;
+    if (this.openAddingForm || this.openUserList) {
+      this.openAddingForm = false;
       this.openUserList = false;
     }
-    this.openList = !this.openList;
+    this.openSpecialistList = !this.openSpecialistList;
     this.specialistService.getSpecialistList();
   }
 
   public openUsers() {
-    if (this.openList || this.openForm) {
-      this.openList = false;
-      this.openForm = false;
+    if (this.openSpecialistList || this.openAddingForm) {
+      this.openSpecialistList = false;
+      this.openAddingForm = false;
     }
 
     this.openUserList = !this.openUserList;
   }
 
   public close(isClosed: boolean) {
-    this.openForm = isClosed;
+    this.openAddingForm = isClosed;
     this.spinner = true;
 
     setTimeout(() => {

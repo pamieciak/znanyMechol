@@ -4,8 +4,8 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'app/store/app.state';
 import { authActions } from 'app/store/auth';
-import { isAdminActions } from 'app/store/is-admin/is-admin.actions';
-import { singleuserActions } from 'app/store/user/user.actions';
+import { AdminActions } from 'app/store/is-admin/is-admin.actions';
+import { appUserActions } from 'app/store/user/user.actions';
 
 import { ToastrService } from 'ngx-toastr';
 import { map, ReplaySubject, tap } from 'rxjs';
@@ -29,7 +29,7 @@ export class AuthService {
   }
 
   public get user$() {
-    return this.store.select(state => state.singleuser.singleuser);
+    return this.store.select(state => state.appUser.appUser);
   }
 
   public logIn(email: string, password: string) {
@@ -37,13 +37,12 @@ export class AuthService {
       map(users => {
         const hasUsers = users.length !== 0;
         if (hasUsers) {
-          this.store.dispatch(singleuserActions.userData({ user: users[0] }));
+          this.store.dispatch(appUserActions.setUserData({ user: users[0] }));
           localStorage.setItem('user', JSON.stringify(users[0]));
-
           if (users[0].role !== 'admin') {
-            this.store.dispatch(isAdminActions.isntThisAdmin());
+            this.store.dispatch(AdminActions.isAdminNotLoggedIn());
           } else {
-            this.store.dispatch(isAdminActions.isThisAdmin());
+            this.store.dispatch(AdminActions.isAdminLoggedIn());
           }
         }
         return hasUsers;
@@ -51,7 +50,7 @@ export class AuthService {
       tap(isLogIn => {
         if (isLogIn) {
           this.toastr.success('Logowanie prawidłowe', 'Sukces!');
-          this.store.dispatch(authActions.isLogedInTrue());
+          this.store.dispatch(authActions.isUserLoggedIn());
           this.router.navigate(['/admin-dashboard']);
         } else {
           this.toastr.error('Logowanie nieprawidłowe', 'Uwaga!');
@@ -61,8 +60,8 @@ export class AuthService {
   }
 
   public logOut() {
-    this.store.dispatch(authActions.isLogedInFalse());
-    this.store.dispatch(isAdminActions.isntThisAdmin());
+    this.store.dispatch(authActions.isUserLoggedOff());
+    this.store.dispatch(AdminActions.isAdminNotLoggedIn());
     this.toastr.success('Wylogowano', 'Sukces!');
   }
 
@@ -73,11 +72,11 @@ export class AuthService {
     } else {
       this.user.next(user);
       if (user.role !== 'admin') {
-        this.store.dispatch(isAdminActions.isntThisAdmin());
+        this.store.dispatch(AdminActions.isAdminNotLoggedIn());
       } else {
-        this.store.dispatch(isAdminActions.isThisAdmin());
+        this.store.dispatch(AdminActions.isAdminLoggedIn());
       }
-      this.store.dispatch(authActions.isLogedInTrue());
+      this.store.dispatch(authActions.isUserLoggedIn());
     }
   }
 }

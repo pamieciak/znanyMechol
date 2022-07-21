@@ -43,9 +43,7 @@ export class AddSpecialistComponent {
       id: 0,
     };
 
-    console.log(this.form.value);
     this.closeForm.emit(false);
-
     this.specialistService.postSpecialist(specialistData);
   }
 

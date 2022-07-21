@@ -15,7 +15,7 @@
       <h2>PANEL ADMINA</h2>
     </ng-template>
     <div class="header__login">
-      <a *ngIf="(isLogedIn$ | async) === false; else helloUser" [routerLink]="'/login'"
+      <a *ngIf="(isLoggedIn$ | async) === false; else helloUser" [routerLink]="'/login'"
         >Zaloguj <nb-icon icon="log-in-outline"></nb-icon
       ></a>
       <ng-template #helloUser
@@ -26,13 +26,13 @@
   </div>
 </div>
 
-<div *ngIf="isOpenModal" class="confirmationModal">
-  <div class="confirmationModal__content">
+<div *ngIf="isOpenModal" class="confirmation-modal">
+  <div class="confirmation-modal__content">
     <h1>{{ (user$ | async)?.name }},</h1>
     <h2>Czy na pewno chcesz się wylogować?</h2>
-    <div class="confirmationModal__buttons">
-      <button class="cancelBtn" (click)="closeModal()">Anuluj</button>
-      <button class="deleteBtn" (click)="logout()">Tak, wyloguj mnie</button>
+    <div class="confirmation-modal__buttons">
+      <button class="cancel-btn" (click)="closeModal()">Anuluj</button>
+      <button class="delete-btn" (click)="logout()">Tak, wyloguj mnie</button>
     </div>
   </div>
 </div>

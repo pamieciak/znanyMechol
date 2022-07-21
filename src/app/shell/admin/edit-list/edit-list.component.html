@@ -1,8 +1,8 @@
-<div class="specList">
-  <h1 class="specList__title">Lista specjalistów</h1>
+<div class="spec-list">
+  <h1 class="spec-list__title">Lista specjalistów</h1>
   <ng-container *ngIf="!deleting">
     <ng-container *ngFor="let specialist of adminlist$ | async">
-      <div class="specList__data">
+      <div class="spec-list__data">
         <p
           matTooltip="{{ specialist.specialization }} {{ specialist.rating | rating }}"
           matTooltipPosition="left"
@@ -10,11 +10,11 @@
           {{ specialist.first_name }} {{ specialist.last_name }}
         </p>
         <div>
-          <button class="specList__edit" (click)="openEditor(specialist)">
+          <button class="spec-list__edit" (click)="openEditor(specialist)">
             <nb-icon icon="edit-2-outline"></nb-icon>
           </button>
           <button
-            class="specList__delete"
+            class="spec-list__delete"
             (click)="openModal(specialist.first_name, specialist.last_name, specialist.id)">
             <nb-icon icon="close-circle-outline"></nb-icon>
           </button>
@@ -27,19 +27,19 @@
   </ng-container>
 </div>
 
-<div *ngIf="isOpenModal" class="confirmationModal">
-  <div class="confirmationModal__content">
+<div *ngIf="isOpenModal" class="confirmation-modal">
+  <div class="confirmation-modal__content">
     <h1>Czy na pewno chcesz usunąć specjalistę?</h1>
     <p>{{ name }} {{ surname }}</p>
-    <div class="confirmationModal__buttons">
-      <button class="cancelBtn" (click)="closeModal()">Anuluj</button>
-      <button class="deleteBtn" (click)="deleteSpecialist()">Tak, usuń</button>
+    <div class="confirmation-modal__buttons">
+      <button class="cancel-btn" (click)="closeModal()">Anuluj</button>
+      <button class="delete-btn" (click)="deleteSpecialist()">Tak, usuń</button>
     </div>
   </div>
 </div>
 
-<div *ngIf="isEditModalOpen" class="editModal">
-  <div class="editModal__content">
+<div *ngIf="isEditModalOpen" class="edit-modal">
+  <div class="edit-modal__content">
     <ng-container *ngIf="!editing">
       <h1>Edytuj dane specjalisty</h1>
       <form [formGroup]="editForm" (ngSubmit)="editData()">
@@ -74,8 +74,8 @@
           <mat-error *ngIf="editForm.controls['address'].errors?.['minlength']">za krótkie dane!</mat-error>
         </mat-form-field>
         <div>
-          <button type="button" mat-raised-button class="cancelBtn" (click)="closeEdit()">Anuluj</button>
-          <button mat-raised-button class="editBtn">Edytuj dane specjalisty</button>
+          <button type="button" mat-raised-button class="cancel-btn" (click)="closeEdit()">Anuluj</button>
+          <button mat-raised-button class="edit-btn">Edytuj dane specjalisty</button>
         </div>
       </form>
     </ng-container>

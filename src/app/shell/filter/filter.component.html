@@ -1,14 +1,14 @@
 <div class="filter">
   <h1>Jakiego specjalisty szukasz?</h1>
   <div class="filter__buttons">
-    <button (click)="showSpecByJob('elektryk')" class="filterBtn">Elektryk ⚡️</button>
-    <button (click)="showSpecByJob('mechanik')" class="filterBtn">Mechanik ⚙️</button>
-    <button (click)="showSpecByJob('zawieszenie')" class="filterBtn">Zawieszenie 🔩</button>
-    <button (click)="showSpecByJob('blacharz')" class="filterBtn">Blacharz 🔨</button>
-    <button (click)="clearFilter()" class="clearFilter">Wyczyść filtry</button>
+    <button (click)="showSpecByJob('elektryk')" class="filter-btn">Elektryk ⚡️</button>
+    <button (click)="showSpecByJob('mechanik')" class="filter-btn">Mechanik ⚙️</button>
+    <button (click)="showSpecByJob('zawieszenie')" class="filter-btn">Zawieszenie 🔩</button>
+    <button (click)="showSpecByJob('blacharz')" class="filter-btn">Blacharz 🔨</button>
+    <button (click)="clearFilter()" class="clear-filter">Wyczyść filtry</button>
   </div>
 </div>
-<div class="wichFilter" *ngIf="inputValue$ | async as inputVal">
+<div class="wich-filter" *ngIf="inputValue$ | async as inputVal">
   <p>
     Wyniki wyszukiwania: <span>{{ inputVal | touppercase }}</span>
   </p>
