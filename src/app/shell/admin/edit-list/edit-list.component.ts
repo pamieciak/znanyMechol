@@ -55,7 +55,7 @@ export class EditListComponent {
     this.specialistService.getSpecialistList();
     this.isOpenModal = false;
     this.deleting = true;
-
+    //imitacja połączenia z bazą danych i oczekiwania na respone
     setTimeout(() => {
       this.toastr.success(`Specjalista ${this.name} ${this.surname} usunięty`, 'Sukces!');
       this.deleting = false;
@@ -100,9 +100,8 @@ export class EditListComponent {
     };
 
     this.specialistService.editSpecialist(specialistData);
-    this.specialistService.getSpecialistList();
     this.editing = true;
-
+    //imitacja połączenia z bazą danych i oczekiwania na respone
     setTimeout(() => {
       this.editing = false;
       this.cdr.markForCheck();
@@ -121,11 +120,13 @@ export class EditListComponent {
             res.last_name === this.editForm.controls['last_name'].value &&
             res.specialization === this.editForm.controls['specialization'].value
           ) {
+            //imitacja połączenia z bazą danych i oczekiwania na respone
             setTimeout(() => {
               this.toastr.info(`Nie wprowadzono żadnych zmian`, 'Informacja!');
               this.cdr.markForCheck();
             }, 1000);
           } else {
+            //imitacja połączenia z bazą danych i oczekiwania na respone
             setTimeout(() => {
               this.toastr.success(`Dane ${res.first_name} ${res.last_name} edytowane`, 'Sukces!');
               this.cdr.markForCheck();

@@ -53,7 +53,7 @@ export class AdminDashboardComponent {
   public close(isClosed: boolean) {
     this.openAddingForm = isClosed;
     this.spinner = true;
-
+    //imitacja połączenia z bazą danych i oczekiwania na respone
     setTimeout(() => {
       this.spinner = false;
       this.toastr.success('Specjalista dodany pomyślnie', 'Sukces!');

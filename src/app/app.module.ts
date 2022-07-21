@@ -16,7 +16,7 @@ import { StarRatingModule } from 'angular-star-rating';
 import { MatSelectModule } from '@angular/material/select';
 import { AppState } from './store/app.state';
 import { authReducer } from './store/auth';
-import { isAdminRecucer } from './store/is-admin/is-admin.reducer';
+import { isAdminRecucer } from './store/admin-user/admin-user.reducer';
 import { setUserListReducer } from './store/user-list/user-list.reducer';
 import { setSpecialistsListReducer } from './store/specialist-list/specialist-list.reducer';
 import { searchReducer } from './store/search/search.reducer';

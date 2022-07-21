@@ -11,13 +11,13 @@ export const authReducer = createReducer(
   on(authActions.isUserLoggedIn, state => {
     return {
       ...state,
-      isAuth: true,
+      isUserAuthorised: true,
     };
   }),
   on(authActions.isUserLoggedOff, state => {
     return {
       ...state,
-      isAuth: false,
+      isUserAuthorised: false,
     };
   })
 );

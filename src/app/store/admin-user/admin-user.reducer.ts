@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import { AdminActions } from './is-admin.actions';
-import { AdminUserState } from './is-admin.state';
+import { adminActions } from './admin-user.actions';
+import { AdminUserState } from './admin-user.state';
 
 const initialAdminState: AdminUserState = {
   isAdminLoggedIn: false,
@@ -8,16 +8,16 @@ const initialAdminState: AdminUserState = {
 
 export const isAdminRecucer = createReducer(
   initialAdminState,
-  on(AdminActions.isAdminLoggedIn, state => {
+  on(adminActions.isAdminLoggedIn, state => {
     return {
       ...state,
-      isAdmin: true,
+      isAdminLoggedIn: true,
     };
   }),
-  on(AdminActions.isAdminNotLoggedIn, state => {
+  on(adminActions.isAdminNotLoggedIn, state => {
     return {
       ...state,
-      isAdmin: false,
+      isAdminLoggedIn: false,
     };
   })
 );

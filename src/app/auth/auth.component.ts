@@ -24,6 +24,7 @@ export class AuthComponent {
       this.spinner = true;
       this.closeLoginForm = true;
 
+      //imitacja połączenia z bazą danych i oczekiwania na respone
       setTimeout(() => {
         this.authService.logIn(this.authForm.value.email, this.authForm.value.password).subscribe(value => {
           if (value === false) {

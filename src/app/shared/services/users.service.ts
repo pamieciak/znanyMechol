@@ -24,7 +24,7 @@ export class UsersService {
 
   public checkUserPass(pass: string) {
     return this.store
-      .select(state => state.appUser.appUser)
+      .select(state => state.appUser.value)
       .pipe(
         switchMap(user => {
           return this.http.get<User[]>(`${this.API_USER_URL}?email_like${user?.email}=&password_like=${pass}`);

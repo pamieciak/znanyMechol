@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AppState } from 'app/store/app.state';
 import { authActions } from 'app/store/auth';
-import { AdminActions } from 'app/store/is-admin/is-admin.actions';
+import { adminActions } from 'app/store/admin-user/admin-user.actions';
 import { appUserActions } from 'app/store/user/user.actions';
 
 import { ToastrService } from 'ngx-toastr';
-import { map, ReplaySubject, tap } from 'rxjs';
+import { map, tap } from 'rxjs';
 import { User } from './user.interface';
 
 @Injectable({
@@ -16,8 +16,6 @@ import { User } from './user.interface';
 })
 export class AuthService {
   public readonly API_URL = 'http://localhost:3000/users';
-
-  private readonly user = new ReplaySubject<User>(1);
 
   constructor(
     private authApi: HttpClient,
@@ -29,7 +27,7 @@ export class AuthService {
   }
 
   public get user$() {
-    return this.store.select(state => state.appUser.appUser);
+    return this.store.select(state => state.appUser.value);
   }
 
   public logIn(email: string, password: string) {
@@ -40,9 +38,9 @@ export class AuthService {
           this.store.dispatch(appUserActions.setUserData({ user: users[0] }));
           localStorage.setItem('user', JSON.stringify(users[0]));
           if (users[0].role !== 'admin') {
-            this.store.dispatch(AdminActions.isAdminNotLoggedIn());
+            this.store.dispatch(adminActions.isAdminNotLoggedIn());
           } else {
-            this.store.dispatch(AdminActions.isAdminLoggedIn());
+            this.store.dispatch(adminActions.isAdminLoggedIn());
           }
         }
         return hasUsers;
@@ -61,7 +59,7 @@ export class AuthService {
 
   public logOut() {
     this.store.dispatch(authActions.isUserLoggedOff());
-    this.store.dispatch(AdminActions.isAdminNotLoggedIn());
+    this.store.dispatch(adminActions.isAdminNotLoggedIn());
     this.toastr.success('Wylogowano', 'Sukces!');
   }
 
@@ -70,11 +68,11 @@ export class AuthService {
     if (!user) {
       return;
     } else {
-      this.user.next(user);
+      this.store.dispatch(appUserActions.setUserData({ user: user }));
       if (user.role !== 'admin') {
-        this.store.dispatch(AdminActions.isAdminNotLoggedIn());
+        this.store.dispatch(adminActions.isAdminNotLoggedIn());
       } else {
-        this.store.dispatch(AdminActions.isAdminLoggedIn());
+        this.store.dispatch(adminActions.isAdminLoggedIn());
       }
       this.store.dispatch(authActions.isUserLoggedIn());
     }

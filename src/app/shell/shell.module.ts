@@ -66,9 +66,6 @@ import { TouppercasePipe } from './specialist-view/pipes/touppercase.pipe';
           {
             path: '',
             component: SpecialistViewComponent,
-            // resolve: {
-            //   myResolver: ExcampleResolver,
-            // },
           },
         ],
       },

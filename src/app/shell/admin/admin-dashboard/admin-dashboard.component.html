@@ -2,11 +2,11 @@
 
 <div class="admin-panel" #div>
   <p>Witaj {{ (user$ | async)?.name }}</p>
-  <button (click)="showAddingForm()" class="admin-panel__add"><nb-icon icon="person-add-outline"></nb-icon></button>
-  <button #listButton (click)="openEditList()" class="adminPanel__add list">
+  <button (click)="showAddingForm()" class="admin-panel__option"><nb-icon icon="person-add-outline"></nb-icon></button>
+  <button #listButton (click)="openEditList()" class="admin-panel__option">
     <nb-icon icon="list-outline"></nb-icon>
   </button>
-  <button #listButton (click)="openUsers()" class="admin-panel__add list">
+  <button #listButton (click)="openUsers()" class="admin-panel__option">
     <nb-icon icon="people-outline"></nb-icon>
   </button>
 </div>

@@ -11,8 +11,7 @@
 
 <div *ngIf="isOpenModal" class="confirmation-modal">
   <div class="confirmation-modal__content">
-    <h1>Czy chcesz zresetować hasło użytkownikowi: {{ (userData | async)!.name }}</h1>
-    <p>Stare hasło: {{ (userData | async)!.password }}</p>
+    <h1>Czy chcesz zresetować hasło użytkownikowi: {{ selectedUserName }}</h1>
 
     <div class="confirmation-modal__buttons">
       <button class="deleteBtn" (click)="closeModal()">Anuluj</button>

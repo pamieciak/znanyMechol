@@ -4,7 +4,6 @@ import { Store } from '@ngrx/store';
 import { UsersService } from '@shared/services/users.service';
 import { User } from 'app/auth/user.interface';
 import { AppState } from 'app/store/app.state';
-import { appUserActions } from 'app/store/user/user.actions';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,9 +15,10 @@ import { ToastrService } from 'ngx-toastr';
 export class UserListComponent {
   public isOpenModal = false;
   public isOpenConfimationModal = false;
-  public userData = this.store.select(state => state.appUser.appUser);
+  public userData = this.store.select(state => state.appUser.value);
   public user$ = this.store.select(state => state.users.users);
   public adminPass = new FormControl('');
+  public selectedUserName? = '';
 
   constructor(
     private userService: UsersService,
@@ -28,7 +28,7 @@ export class UserListComponent {
   ) {}
 
   public openChangePasswordModal(user: User) {
-    this.store.dispatch(appUserActions.setUserData({ user }));
+    this.selectedUserName = user.name;
     this.isOpenModal = !this.isOpenModal;
   }
 

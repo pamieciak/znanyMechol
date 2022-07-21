@@ -1,9 +1,9 @@
+import { AdminUserState } from './admin-user/admin-user.state';
 import { AuthState } from './auth';
-import { AdminUserState } from './is-admin/is-admin.state';
 import { SearchState } from './search/search.state';
 import { SpecialistListState } from './specialist-list/specialist-list.state';
 import { UserListState } from './user-list/user-list.state';
-import { appUserState } from './user/user.state';
+import { AppUserState } from './user/user.state';
 
 export interface AppState {
   auth: AuthState;
@@ -11,5 +11,5 @@ export interface AppState {
   users: UserListState;
   specialists: SpecialistListState;
   search: SearchState;
-  appUser: appUserState;
+  appUser: AppUserState;
 }

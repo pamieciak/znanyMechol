@@ -1,9 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import { appUserActions } from './user.actions';
-import { appUserState } from './user.state';
+import { AppUserState } from './user.state';
 
-const initialUserState: appUserState = {
-  appUser: null,
+const initialUserState: AppUserState = {
+  value: null,
 };
 
 export const appUserReducer = createReducer(
@@ -11,7 +11,7 @@ export const appUserReducer = createReducer(
   on(appUserActions.setUserData, (state, payload) => {
     return {
       ...state,
-      singleuser: payload.user,
+      value: payload.user,
     };
   })
 );
